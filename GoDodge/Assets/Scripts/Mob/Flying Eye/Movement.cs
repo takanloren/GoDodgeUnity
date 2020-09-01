@@ -11,13 +11,24 @@ public class Movement : MonoBehaviour
 	public float speed = 1f;
 	private float objectWidth;
 	private float objectHeight;
+	private int prngSeed;
 
 	// Start is called before the first frame update
 	void Start()
     {
+		Debug.Log("Start mob movement");
+		prngSeed = UnityEngine.Random.Range(0, 9999999);
+		UnityEngine.Random.InitState(prngSeed);
+
 		rb2D = GetComponent<Rigidbody2D>();
 		objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
 		objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; //extents = size of height / 2
+
+		if(GameManager.Instance.CurrentLevel >= 1)
+		{
+			velocityX = UnityEngine.Random.Range(12f, 27f);
+			velocityY = UnityEngine.Random.Range(5f, 15f);
+		}
 	}
 
     // Update is called once per frame
@@ -29,7 +40,7 @@ public class Movement : MonoBehaviour
 		{
 			velocityX *= -1;
 		}
-		else if (screenPos.y - objectHeight <= 0 || screenPos.y + objectHeight >= Screen.height)
+		else if (screenPos.y - objectHeight - 50 <= 0 || screenPos.y + objectHeight >= Screen.height)
 		{
 			velocityY *= -1;
 		}
