@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventTrigger : MonoBehaviour
 {
@@ -27,11 +28,23 @@ public class EventTrigger : MonoBehaviour
 	{
 		Debug.Log("Player OnCollisionEnter2D");
 
-		if(col.gameObject.tag == "MobEye")
+		switch (col.gameObject.tag)
 		{
-			GameObject aaa = Instantiate(explosionAnimation, this.transform.position, Quaternion.identity).gameObject;
-			Destroy(aaa, 1f);
-			Destroy(this.gameObject);
+			case "MobEye":
+				GameObject aaa = Instantiate(explosionAnimation, this.transform.position, Quaternion.identity).gameObject;
+				Destroy(aaa, 1f);
+				Destroy(this.gameObject);
+
+				break;
+
+			case "Door":
+				GameManager.Instance.CurrentLevel++;
+
+				Debug.Log("Next level :" + GameManager.Instance.CurrentLevel);
+				SceneManager.LoadScene("Level" + GameManager.Instance.CurrentLevel);
+				break;
+
 		}
+		
 	}
 }
