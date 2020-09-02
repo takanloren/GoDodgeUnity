@@ -11,36 +11,33 @@ public class Movement : MonoBehaviour
 	public float speed = 1f;
 	private float objectWidth;
 	private float objectHeight;
-	private int prngSeed;
+    private static System.Random _random = new System.Random();
+    private SpriteRenderer mySpriteRenderer;
+    private int _hardCodeMargin = 20;
 
-	// Start is called before the first frame update
-	void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-		Debug.Log("Start mob movement");
-		prngSeed = UnityEngine.Random.Range(0, 9999999);
-		UnityEngine.Random.InitState(prngSeed);
-
-		rb2D = GetComponent<Rigidbody2D>();
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        rb2D = GetComponent<Rigidbody2D>();
 		objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
 		objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; //extents = size of height / 2
 
-		if(GameManager.Instance.CurrentLevel >= 1)
-		{
-			velocityX = UnityEngine.Random.Range(12f, 27f);
-			velocityY = UnityEngine.Random.Range(5f, 15f);
-		}
-	}
+        //We want the game is unexpected!!
+        velocityX = _random.Next(-30, 30);
+        velocityY = _random.Next(-30, 30);
+    }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 		Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
 
-		if (screenPos.x - objectWidth <= 0 || screenPos.x + objectWidth >= Screen.width)
+		if (screenPos.x - objectWidth - _hardCodeMargin <= 0 || screenPos.x + objectWidth + _hardCodeMargin >= Screen.width)
 		{
 			velocityX *= -1;
 		}
-		else if (screenPos.y - objectHeight - 50 <= 0 || screenPos.y + objectHeight >= Screen.height)
+		else if (screenPos.y - objectHeight - _hardCodeMargin <= 0 || screenPos.y + objectHeight + _hardCodeMargin >= Screen.height)
 		{
 			velocityY *= -1;
 		}
@@ -50,6 +47,22 @@ public class Movement : MonoBehaviour
 
 	void MoveObject(float x, float y)
 	{
+        if(x < 0)
+        {
+            if (mySpriteRenderer != null)
+            {
+                // flip the sprite
+                mySpriteRenderer.flipX = true;
+            }
+        }else
+        {
+            if (mySpriteRenderer != null)
+            {
+                // flip the sprite
+                mySpriteRenderer.flipX = false;
+            }
+        }
+
 		Vector3 tempVect = new Vector3(x, y, 0);
 		tempVect = tempVect.normalized * speed * Time.deltaTime;
 		rb2D.MovePosition(rb2D.transform.position + tempVect);
