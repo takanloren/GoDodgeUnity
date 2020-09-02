@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MobEye
   - Door
+  - Goblin
   layers:
   - Default
   - TransparentFX
