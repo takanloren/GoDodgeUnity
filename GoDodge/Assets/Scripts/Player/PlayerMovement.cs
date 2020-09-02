@@ -33,11 +33,11 @@ public class PlayerMovement : MonoBehaviour
 		{
             MoveAnimation(MoveDirection.Down);
 		}
-		else if ((angle <= -150 && angle >= -180) || (angle >= 150 && angle <= 180))
+		else if ((angle < -150 && angle >= -180) || (angle > 150 && angle <= 180))
 		{
             MoveAnimation(MoveDirection.Left);
 		}
-		else if ((angle <= 30 && angle > 0) || (angle >= -30 && angle < 0))
+		else if ((angle < 30 && angle > 0) || (angle > -30 && angle < 0))
 		{
             MoveAnimation(MoveDirection.Right);
 		}
@@ -63,19 +63,39 @@ public class PlayerMovement : MonoBehaviour
 		switch (moveDirection)
 		{
 			case MoveDirection.Up:
-                anim.SetTrigger("MoveUp");
+                anim.SetBool("MoveUp", true);
+                anim.SetBool("MoveDown", false);
+                anim.SetBool("MoveLeft", false);
+                anim.SetBool("MoveRight", false);
+                anim.SetBool("Idle", false);
 				break;
 			case MoveDirection.Down:
-                anim.SetTrigger("MoveDown");
+                anim.SetBool("MoveUp", false);
+                anim.SetBool("MoveDown", true);
+                anim.SetBool("MoveLeft", false);
+                anim.SetBool("MoveRight", false);
+                anim.SetBool("Idle", false);
                 break;
 			case MoveDirection.Left:
-                anim.SetTrigger("MoveLeft");
+                anim.SetBool("MoveUp", false);
+                anim.SetBool("MoveDown", false);
+                anim.SetBool("MoveLeft", true);
+                anim.SetBool("MoveRight", false);
+                anim.SetBool("Idle", false);
                 break;
 			case MoveDirection.Right:
-                anim.SetTrigger("MoveRight");
+                anim.SetBool("MoveUp", false);
+                anim.SetBool("MoveDown", false);
+                anim.SetBool("MoveLeft", false);
+                anim.SetBool("MoveRight", true);
+                anim.SetBool("Idle", false);
                 break;
 			case MoveDirection.Idle:
-                anim.SetTrigger("Idle");
+                anim.SetBool("MoveUp", false);
+                anim.SetBool("MoveDown", false);
+                anim.SetBool("MoveLeft", false);
+                anim.SetBool("MoveRight", false);
+                anim.SetBool("Idle", true);
                 break;
 		}
 	}
