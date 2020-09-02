@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class EventTrigger : MonoBehaviour
 {
 	public GameObject explosionAnimation;
+    public AudioSource audioSource;
+    public AudioClip explosionAC;
+    public AudioClip enterGateAC;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,8 @@ public class EventTrigger : MonoBehaviour
 		{
 			case "MobEye":
             case "Goblin":
+                //GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
+                audioSource.PlayOneShot(explosionAC, 1);
                 GameObject mobObject = Instantiate(explosionAnimation, this.transform.position, Quaternion.identity).gameObject;
                 GameManager.Instance.SetGameOverWithDelayTime(true, 1000);
                 Destroy(mobObject, 1f);
@@ -39,6 +44,7 @@ public class EventTrigger : MonoBehaviour
                 break;
 
 			case "Door":
+                audioSource.PlayOneShot(enterGateAC, 1);
 				GameManager.Instance.CurrentLevel++;
 				SceneManager.LoadScene("Level" + GameManager.Instance.CurrentLevel);
 				break;

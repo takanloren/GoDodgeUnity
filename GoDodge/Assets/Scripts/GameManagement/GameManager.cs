@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class GameManager
 	public int CurrentLevel { get; set; } = 1;
 
     public bool IsGameOver { get; set; } = false;
+
+    public DateTime StartGameTime { get; set; }
 
 	public static GameManager Instance
 	{
