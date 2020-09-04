@@ -39,10 +39,13 @@ public class CameraScript : MonoBehaviour
 
 		//transform.position = new Vector3(xVector, yVector, transform.position.z);
 
-		var xVector = Mathf.Clamp(player.position.x, xMin, xMax);
-		var yVector = Mathf.Clamp(player.position.y, yMin, yMax);
+		if(player != null)
+		{
+			var xVector = Mathf.Clamp(player.position.x, xMin, xMax);
+			var yVector = Mathf.Clamp(player.position.y, yMin, yMax);
 
-		transform.position = new Vector3(xVector, yVector, transform.position.z);
+			transform.position = new Vector3(xVector, yVector, transform.position.z);
+		}
 	}
 
 	private void SetLimits(Vector3 minTile, Vector3 maxTile)
