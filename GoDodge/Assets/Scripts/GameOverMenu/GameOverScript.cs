@@ -12,9 +12,12 @@ public class GameOverScript : MonoBehaviour
     public TextMeshProUGUI highestLevel;
     public TextMeshProUGUI totalTime;
     private bool showingGOMenuUI = false;
+	private GameManager.Map CurrentMap;
     // Start is called before the first frame update
     void Start()
     {
+		CurrentMap = GameManager.Map.DUNGEON;
+
         gameOverlayUI.SetActive(false);
         gameOverMenuUI.SetActive(false);
     }
@@ -34,8 +37,15 @@ public class GameOverScript : MonoBehaviour
 
     public void DisplayGameOverWindow()
     {
-        GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
-        GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().PlayMusic();
+		try
+		{
+			GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
+			GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().PlayMusic();
+		}catch(Exception ex)
+		{
+			
+		}
+       
 
         gameOverlayUI.SetActive(true);
         gameOverMenuUI.SetActive(true);
@@ -84,7 +94,31 @@ public class GameOverScript : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void GetExtraLife()
+	public void BackToMapSelection()
+	{
+		GameManager.Instance.ResetAll();
+		showingGOMenuUI = false;
+		Time.timeScale = 1f;
+
+		GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().StopMusic();
+		GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
+
+		SceneManager.LoadScene("MapManager");
+	}
+
+	public void PlayAgain()
+	{
+		GameManager.Instance.ResetAll();
+		showingGOMenuUI = false;
+		Time.timeScale = 1f;
+
+		GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().StopMusic();
+		GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
+
+		GameManager.Instance.StartMap(CurrentMap);
+	}
+
+	public void GetExtraLife()
     {
         //TODO Show Ads here for extra life
     }

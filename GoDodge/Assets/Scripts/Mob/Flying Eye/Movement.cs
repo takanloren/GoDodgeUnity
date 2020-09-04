@@ -2,23 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Movement : MonoBehaviour
 {
 	public Rigidbody2D rb2D;
-	public float velocityX = 2f;
-	public float velocityY = 2f;
-	public float speed = 1f;
+	public Tilemap tilemap;
+
+	private float speed = 1f;
+	private float velocityX = 1f;
+	private float velocityY = 1f;
 	private float objectWidth;
 	private float objectHeight;
     private static System.Random _random = new System.Random();
     private SpriteRenderer mySpriteRenderer;
     private int _hardCodeMargin = 20;
+	private float xMax, xMin, yMax, yMin;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	void Start()
     {
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
+		Vector3 minTile = tilemap.CellToWorld(tilemap.cellBounds.min);
+		Vector3 maxTile = tilemap.CellToWorld(tilemap.cellBounds.max);
+
+		SetLimits(minTile, maxTile);
+
+		mySpriteRenderer = GetComponent<SpriteRenderer>();
         rb2D = GetComponent<Rigidbody2D>();
 		objectWidth = transform.GetComponent<SpriteRenderer>().bounds.extents.x; //extents = size of width / 2
 		objectHeight = transform.GetComponent<SpriteRenderer>().bounds.extents.y; //extents = size of height / 2
@@ -26,18 +35,17 @@ public class Movement : MonoBehaviour
         //We want the game is unexpected!!
         velocityX = _random.Next(-30, 30);
         velocityY = _random.Next(-30, 30);
-    }
+		speed = _random.Next(2, 5);
+	}
 
     // Update is called once per frame
     void FixedUpdate()
     {
-		Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
-
-		if (screenPos.x - objectWidth - _hardCodeMargin <= 0 || screenPos.x + objectWidth + _hardCodeMargin >= Screen.width)
+		if (rb2D.position.x <= xMin || rb2D.position.x >= xMax)
 		{
 			velocityX *= -1;
 		}
-		else if (screenPos.y - objectHeight - _hardCodeMargin <= 0 || screenPos.y + objectHeight + _hardCodeMargin >= Screen.height)
+		else if(rb2D.position.y <= yMin || rb2D.position.y >= yMax)
 		{
 			velocityY *= -1;
 		}
@@ -65,6 +73,24 @@ public class Movement : MonoBehaviour
 
 		Vector3 tempVect = new Vector3(x, y, 0);
 		tempVect = tempVect.normalized * speed * Time.deltaTime;
-		rb2D.MovePosition(rb2D.transform.position + tempVect);
+
+		var availableVector = rb2D.transform.position + tempVect;
+		availableVector.x = Mathf.Clamp(availableVector.x, xMin, xMax);
+		availableVector.y = Mathf.Clamp(availableVector.y, yMin, yMax);
+		rb2D.MovePosition(availableVector);		
+	}
+
+	private void SetLimits(Vector3 minTile, Vector3 maxTile)
+	{
+		Camera cam = Camera.main;
+
+		float height = 2f * cam.orthographicSize;
+		float width = height * cam.aspect;
+
+		xMin = minTile.x + objectWidth;
+		xMax = maxTile.x - objectWidth;
+
+		yMin = minTile.y + objectHeight;
+		yMax = maxTile.y - objectHeight;
 	}
 }
