@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -13,6 +14,8 @@ public class GameManager
     public bool IsGameOver { get; set; } = false;
 
     public DateTime StartGameTime { get; set; }
+
+	public Map CurrentActiveMap { get; set; }
 
 	public static GameManager Instance
 	{
@@ -27,6 +30,22 @@ public class GameManager
 		}
 	}
 
+	public void StartMap(Map map)
+	{
+		switch (map)
+		{
+			case Map.DUNGEON:
+				StartMapDungeon();
+				break;
+		}
+	}
+
+	private void StartMapDungeon()
+	{
+		Instance.StartGameTime = DateTime.Now;
+		SceneManager.LoadScene("Dungeon_Level_1");
+	}
+
     public void ResetAll()
     {
         IsGameOver = false;
@@ -39,4 +58,9 @@ public class GameManager
 
         IsGameOver = state;
     }
+
+	public enum Map
+	{
+		DUNGEON, 
+	}
 }

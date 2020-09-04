@@ -13,7 +13,7 @@ public class MainMenuScript : MonoBehaviour
 
 	public void PlayGame()
 	{
-        GameManager.Instance.StartGameTime = DateTime.Now;
-		SceneManager.LoadScene("Level1");
+        //GameManager.Instance.StartGameTime = DateTime.Now;
+		SceneManager.LoadScene("MapManager");
 	}
 }
