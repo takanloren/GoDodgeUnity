@@ -15,6 +15,8 @@ public class GameManager
 
     public DateTime StartGameTime { get; set; }
 
+	public Map CurrentActiveMap { get; set; }
+
 	public static GameManager Instance
 	{
 		get

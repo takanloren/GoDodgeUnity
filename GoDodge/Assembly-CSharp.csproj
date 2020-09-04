@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\StayInSide.cs" />
     <Compile Include="Assets\Scripts\Shadow\ShadowEffect.cs" />
+    <Compile Include="Assets\Utils\Constants.cs" />
     <Compile Include="Assets\Zero Rare\Retro Sound Effects\Demo\Demo.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Materials\Sprites-SolidCol.shader" />
