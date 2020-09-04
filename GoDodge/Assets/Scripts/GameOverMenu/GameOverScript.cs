@@ -12,12 +12,9 @@ public class GameOverScript : MonoBehaviour
     public TextMeshProUGUI highestLevel;
     public TextMeshProUGUI totalTime;
     private bool showingGOMenuUI = false;
-	private GameManager.Map CurrentMap;
     // Start is called before the first frame update
     void Start()
     {
-		CurrentMap = GameManager.Map.DUNGEON;
-
         gameOverlayUI.SetActive(false);
         gameOverMenuUI.SetActive(false);
     }
@@ -115,7 +112,7 @@ public class GameOverScript : MonoBehaviour
 		GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().StopMusic();
 		GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
 
-		GameManager.Instance.StartMap(CurrentMap);
+		GameManager.Instance.StartMap(GameManager.Instance.CurrentActiveMap);
 	}
 
 	public void GetExtraLife()

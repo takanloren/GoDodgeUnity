@@ -41,6 +41,15 @@ Tilemap:
   m_GameObject: {fileID: 2954710123014674735}
   m_Enabled: 1
   m_Tiles:
+  - first: {x: -1, y: -8, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 44
+      m_TileSpriteIndex: 23
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 1073741825
   - first: {x: -1, y: -6, z: 0}
     second:
       serializedVersion: 2
@@ -527,6 +536,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 7125db304d281c24e84632d3d65be6d8, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 8c1fd7af862a8ee459e8092f815d77c1, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 38dba74e65c39e54e8d26b1f2eeff15a, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: -418600334569417129, guid: 62994fc041fb04d459ca1fd99c15944d,
@@ -597,7 +608,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -3248334058349396385, guid: 62994fc041fb04d459ca1fd99c15944d,
       type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -9115494449990103297, guid: 62994fc041fb04d459ca1fd99c15944d,
       type: 3}
   - m_RefCount: 1
@@ -661,7 +672,7 @@ Tilemap:
     m_Data: {fileID: 1453184701218036082, guid: 62994fc041fb04d459ca1fd99c15944d,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 44
+  - m_RefCount: 45
     m_Data:
       e00: 1
       e01: 0
@@ -680,13 +691,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 44
+  - m_RefCount: 45
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -1, y: -6, z: 0}
-  m_Size: {x: 7, y: 7, z: 1}
+  m_Origin: {x: -1, y: -8, z: 0}
+  m_Size: {x: 7, y: 9, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -793,7 +804,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9158812425633870782}
   m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 0}
+  m_CellSize: {x: 4, y: 1.25, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0

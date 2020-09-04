@@ -46,7 +46,7 @@ public class EventTrigger : MonoBehaviour
 			case "Door":
                 audioSource.PlayOneShot(enterGateAC, 1);
 				GameManager.Instance.CurrentLevel++;
-				SceneManager.LoadScene("Level" + GameManager.Instance.CurrentLevel);
+				SceneManager.LoadScene(Constants.DUNGEON_LEVEL_PREFIX + GameManager.Instance.CurrentLevel);
 				break;
 
 		}
