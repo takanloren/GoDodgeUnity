@@ -34,8 +34,15 @@ public class GameOverScript : MonoBehaviour
 
     public void DisplayGameOverWindow()
     {
-        GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
-        GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().PlayMusic();
+		try
+		{
+			GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
+			GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().PlayMusic();
+		}catch(Exception ex)
+		{
+			
+		}
+       
 
         gameOverlayUI.SetActive(true);
         gameOverMenuUI.SetActive(true);
@@ -84,7 +91,31 @@ public class GameOverScript : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void GetExtraLife()
+	public void BackToMapSelection()
+	{
+		GameManager.Instance.ResetAll();
+		showingGOMenuUI = false;
+		Time.timeScale = 1f;
+
+		GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().StopMusic();
+		GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
+
+		SceneManager.LoadScene("MapManager");
+	}
+
+	public void PlayAgain()
+	{
+		GameManager.Instance.ResetAll();
+		showingGOMenuUI = false;
+		Time.timeScale = 1f;
+
+		GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().StopMusic();
+		GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
+
+		GameManager.Instance.StartMap(GameManager.Instance.CurrentActiveMap);
+	}
+
+	public void GetExtraLife()
     {
         //TODO Show Ads here for extra life
     }
