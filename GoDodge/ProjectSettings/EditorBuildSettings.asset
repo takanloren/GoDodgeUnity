@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: be40187a85f02f54296055f99132c422
   - enabled: 1
+    path: Assets/Scenes/Highscore.unity
+    guid: fb43e585d75683941ab749ebdc341758
+  - enabled: 1
     path: Assets/Scenes/MapManager.unity
     guid: d002f67bb75794b4d92e333506c7e7d7
   - enabled: 1
@@ -16,14 +19,8 @@ EditorBuildSettings:
     guid: 26d195455ad286e449677f9cfc391661
   - enabled: 1
     path: Assets/Scenes/Dungeon/Dungeon_Level_2.unity
-    guid: 1f49deec3cc36c44ba5373ec56f9edab
+    guid: 82c5b033c29c9024e96f0cacadf8a0da
   - enabled: 1
     path: Assets/Scenes/Dungeon/Dungeon_Level_3.unity
-    guid: 43a7ec068bbb5284e82c4212727e554e
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/Dungeon_Level_4.unity
-    guid: 13929b7c34535a444a4f214ad3ce9918
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/Dungeon_Level_5.unity
-    guid: 2fc972eb78b8664448689335b6a0eb5f
+    guid: 1ad97a29a25fb50448d61a2938c7fe38
   m_configObjects: {}

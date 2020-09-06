@@ -621,3 +621,5 @@ D:\Program Files\UnityProject\GoDodge\GoDodgeUnity\GoDodge\Temp\bin\Debug\Boo.La
 D:\Program Files\UnityProject\GoDodge\GoDodgeUnity\GoDodge\Temp\bin\Debug\Boo.Lang.PatternMatching.dll
 D:\Program Files\UnityProject\GoDodge\GoDodgeUnity\GoDodge\Temp\bin\Debug\Boo.Lang.Parser.dll
 D:\Program Files\UnityProject\GoDodge\GoDodgeUnity\GoDodge\Temp\bin\Debug\Boo.Lang.Useful.dll
+E:\Program Files\UnityProject\GoDodgeUnity\GoDodge\obj\Debug\Assembly-CSharp.dll
+E:\Program Files\UnityProject\GoDodgeUnity\GoDodge\obj\Debug\Assembly-CSharp.pdb

@@ -19,8 +19,12 @@ public class MapManager : MonoBehaviour
     }
 
 	public void StartMapDungeon()
-	{
-		GameManager.Instance.CurrentActiveMap = GameManager.Map.DUNGEON;
+	{       
 		GameManager.Instance.StartMap(GameManager.Map.DUNGEON);
 	}
+
+    public void BackToMainMenu()
+    {
+        GameManager.Instance.StartMap(GameManager.Map.MainMenu);
+    }
 }

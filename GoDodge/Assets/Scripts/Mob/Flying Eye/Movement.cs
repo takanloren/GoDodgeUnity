@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour
 	private float objectHeight;
     private static System.Random _random = new System.Random();
     private SpriteRenderer mySpriteRenderer;
-    private int _hardCodeMargin = 20;
 	private float xMax, xMin, yMax, yMin;
 
 	// Start is called before the first frame update

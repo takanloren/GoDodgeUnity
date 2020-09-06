@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "810096972338",
+    "firebase_url": "https://gododge-1aa10.firebaseio.com",
+    "project_id": "gododge-1aa10",
+    "storage_bucket": "gododge-1aa10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810096972338:android:be38169b451dff77de222b",
+        "android_client_info": {
+          "package_name": "com.tungha.GoDodge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810096972338-sipq0qhs67hsb86q1719pff9697akvrc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKG5BQmUjaxfjwcQ1PClBa6Kc0fRXC_74"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810096972338-sipq0qhs67hsb86q1719pff9697akvrc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

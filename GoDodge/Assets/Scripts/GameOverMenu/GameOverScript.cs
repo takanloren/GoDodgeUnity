@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class GameOverScript : MonoBehaviour
     public GameObject gameOverMenuUI;
     public TextMeshProUGUI highestLevel;
     public TextMeshProUGUI totalTime;
+    public TMP_InputField enterNameField;
+
     private bool showingGOMenuUI = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,16 +42,19 @@ public class GameOverScript : MonoBehaviour
 		{
 			GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
 			GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().PlayMusic();
-		}catch(Exception ex)
-		{
-			
 		}
-       
+        catch (Exception ex)
+		{
+            Debug.Log(ex.Message);
+		}
+
+        
 
         gameOverlayUI.SetActive(true);
         gameOverMenuUI.SetActive(true);
 
-        highestLevel.text = GameManager.Instance.CurrentLevel.ToString();
+        highestLevel.text = GameManager.Instance.ActiveRunAttemp.FinishedLevel.ToString();
+
         totalTime.text = CalculateTotalTime();
 
         Time.timeScale = 0f;
@@ -55,11 +62,10 @@ public class GameOverScript : MonoBehaviour
 
     private string CalculateTotalTime()
     {
-        var currentTime = DateTime.Now;
+        //set the end time for run attempt
+        GameManager.Instance.ActiveRunAttemp.EndTime = DateTime.Now;
 
-        Debug.Log($"GameStart : {GameManager.Instance.StartGameTime.ToString("MM/dd/yyyy HH:mm:ss")}");
-        Debug.Log($"Current Time : {currentTime.ToString("MM/dd/yyyy HH:mm:ss")}");
-        var totalTimeSpan = currentTime - GameManager.Instance.StartGameTime;
+        var totalTimeSpan = GameManager.Instance.ActiveRunAttemp.TotalTimeCost;
 
         string totalTimeText = "";
 
@@ -103,6 +109,22 @@ public class GameOverScript : MonoBehaviour
 		SceneManager.LoadScene("MapManager");
 	}
 
+    public void SubmitScore()
+    {
+        string name = enterNameField.text;
+        int lvel = GameManager.Instance.ActiveRunAttemp.FinishedLevel;
+        double time = GameManager.Instance.ActiveRunAttemp.TotalTimeCost.TotalMilliseconds;
+        string map = GameManager.Instance.ActiveRunAttemp.Map.ToString();
+
+        LeaderboardEntry entry = new LeaderboardEntry(name, map, lvel, time);
+
+        Debug.Log($"Submitted entry = {entry.ToString()}");
+
+        FirebaseLeaderboardHandler.Instance.SubmitScore(entry);
+
+        enterNameField.gameObject.SetActive(false);
+    }
+
 	public void PlayAgain()
 	{
 		GameManager.Instance.ResetAll();
@@ -112,7 +134,7 @@ public class GameOverScript : MonoBehaviour
 		GameObject.FindGameObjectWithTag("MusicGameOver").GetComponent<MusicClass>().StopMusic();
 		GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
 
-		GameManager.Instance.StartMap(GameManager.Instance.CurrentActiveMap);
+		GameManager.Instance.StartMap(GameManager.Instance.ActiveRunAttemp.Map);
 	}
 
 	public void GetExtraLife()

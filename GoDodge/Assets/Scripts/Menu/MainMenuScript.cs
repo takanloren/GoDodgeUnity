@@ -9,11 +9,17 @@ public class MainMenuScript : MonoBehaviour
     void Start()
     {
         GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().PlayMusic();
+
+        FirebaseLeaderboardHandler.Instance.SetupDBReference();
     }
 
 	public void PlayGame()
 	{
-        //GameManager.Instance.StartGameTime = DateTime.Now;
-		SceneManager.LoadScene("MapManager");
+        GameManager.Instance.StartMap(GameManager.Map.MapManager);
 	}
+
+    public void OpenLeaderboard()
+    {
+        GameManager.Instance.StartMap(GameManager.Map.Leaderboard);
+    }
 }

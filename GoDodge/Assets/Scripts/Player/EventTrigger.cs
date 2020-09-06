@@ -35,7 +35,6 @@ public class EventTrigger : MonoBehaviour
 		{
 			case "MobEye":
             case "Goblin":
-                //GameObject.FindGameObjectWithTag("MusicGamePlay").GetComponent<MusicClass>().StopMusic();
                 audioSource.PlayOneShot(explosionAC, 1);
                 GameObject mobObject = Instantiate(explosionAnimation, this.transform.position, Quaternion.identity).gameObject;
                 GameManager.Instance.SetGameOverWithDelayTime(true, 1000);
@@ -45,11 +44,23 @@ public class EventTrigger : MonoBehaviour
 
 			case "Door":
                 audioSource.PlayOneShot(enterGateAC, 1);
-				GameManager.Instance.CurrentLevel++;
-				SceneManager.LoadScene(Constants.DUNGEON_LEVEL_PREFIX + GameManager.Instance.CurrentLevel);
+                GameManager.Instance.ActiveRunAttemp.FinishedLevel++;
+				SceneManager.LoadScene(GetMapScenePrefix(GameManager.Instance.ActiveRunAttemp.Map) + GameManager.Instance.ActiveRunAttemp.FinishedLevel);
 				break;
 
 		}
 		
 	}    
+
+    private string GetMapScenePrefix(GameManager.Map map)
+    {
+        switch (map)
+        {
+            case GameManager.Map.DUNGEON:
+                return Constants.DUNGEON_LEVEL_PREFIX;
+
+            default:
+                return "";
+        }
+    }
 }
