@@ -3,6 +3,7 @@ using Firebase.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,8 @@ public class Leaderboard : MonoBehaviour
     private Transform entryContainer;
     private Transform entryTemplate;
     private List<Transform> leaderboardTransList = new List<Transform>();
-
-    private void Awake()
+	private List<LeaderboardEntry> leaderboardEntries = new List<LeaderboardEntry>();
+	private void Awake()
     {
         entryContainer = transform.Find("EntryContainer");
         entryTemplate = entryContainer.Find("Entry");
@@ -30,7 +31,9 @@ public class Leaderboard : MonoBehaviour
 
     private void ClearTransformEntryList()
     {
-        foreach (var trans in leaderboardTransList)
+		leaderboardEntries.Clear();
+
+		foreach (var trans in leaderboardTransList)
         {
             Destroy(trans.gameObject);
         }
@@ -64,14 +67,26 @@ public class Leaderboard : MonoBehaviour
                             LeaderboardEntry playerScoreEntry = JsonUtility.FromJson<LeaderboardEntry>(playerScore.GetRawJsonValue());
                             Debug.Log($"Received data: {playerScoreEntry.ToString()}");
 
-                            CreateLeaderboardEntryTransform(playerScoreEntry, entryContainer, leaderboardTransList);
-                        }
+							leaderboardEntries.Add(playerScoreEntry);
+
+						}
                     }
                 }
-            }
+
+				List<LeaderboardEntry> sorted = leaderboardEntries.OrderByDescending(p => p.level).ThenBy(p => p.totalTime).ToList();
+				for (int i = 0; i < 10; i++)
+				{
+					CreateLeaderboardEntryTransform(sorted[i], entryContainer, leaderboardTransList);
+				}
+			}
         });
         Debug.Log("End of getting rank");   
     }
+
+	public void BackToMainMenu()
+	{
+		GameManager.Instance.StartMap(GameManager.Map.MainMenu);
+	}
 
     void Update()
     {
@@ -97,7 +112,7 @@ public class Leaderboard : MonoBehaviour
     {
         try
         {
-            float entryUIHeight = 62f;
+            float entryUIHeight = 64f;
             Transform entryTrans = Instantiate(entryTemplate, entryContainer);
             RectTransform entryRectTrans = entryTrans.GetComponent<RectTransform>();
             entryRectTrans.anchoredPosition = new Vector2(0, -(entryUIHeight * tranformList.Count));

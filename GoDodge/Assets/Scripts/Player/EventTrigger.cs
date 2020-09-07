@@ -35,12 +35,13 @@ public class EventTrigger : MonoBehaviour
 		{
 			case "MobEye":
             case "Goblin":
-                audioSource.PlayOneShot(explosionAC, 1);
+				audioSource.PlayOneShot(explosionAC, 1);
                 GameObject mobObject = Instantiate(explosionAnimation, this.transform.position, Quaternion.identity).gameObject;
+				mobObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
                 GameManager.Instance.SetGameOverWithDelayTime(true, 1000);
                 Destroy(mobObject, 1f);
-                Destroy(this.gameObject);
-                break;
+				Destroy(this.gameObject);
+				break;
 
 			case "Door":
                 audioSource.PlayOneShot(enterGateAC, 1);

@@ -6,9 +6,6 @@ using UnityEngine.Tilemaps;
 public class StayInSide : MonoBehaviour
 {
 	public Camera MainCamera; //be sure to assign this in the inspector to your main camera
-	public SpriteRenderer backgroundSR;
-	public RectTransform backgroundRectTrans;
-
 	public Tilemap tilemap;
 	private float xMax, xMin, yMax, yMin;
 

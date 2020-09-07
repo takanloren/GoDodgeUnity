@@ -99,7 +99,7 @@ public class SQLiteHelper
         // Insert values in table
         IDbCommand cmnd = dbConn.CreateCommand();
 
-        cmnd.CommandText = "INSERT INTO " + Constants.PLAYER_MAP_DATA_TABLE
+        cmnd.CommandText = "INSERT OR IGNORE INTO " + Constants.PLAYER_MAP_DATA_TABLE
                         + " ( "
                         + Constants.SQLITE_MAP_ID + ", "
                         + Constants.SQLITE_MAP_FINISHED_LEVEL + ", "
@@ -129,10 +129,27 @@ public class SQLiteHelper
         cmnd.ExecuteNonQuery();
     }
 
+	public void UpdatePlayerMapRecord(PlayerMapRecordedModel model)
+	{
+		IDbCommand cmnd = dbConn.CreateCommand();
+
+		cmnd.CommandText = "UPDATE " + Constants.PLAYER_MAP_DATA_TABLE + " SET "
+						+ Constants.SQLITE_MAP_FINISHED_LEVEL + "=" + model.finishedLevel + ", "
+						+ Constants.SQLITE_MAP_BEST_TIME + "=" + model.bestTime.TotalMilliseconds
+						+ " WHERE " + Constants.SQLITE_MAP_ID + "=" + model.mapID;
+		cmnd.ExecuteNonQuery();
+	}
+
+
     public void InitMapDataTable()
     {
         InitMapDungeon();
     }
+
+	public void InitDefaultPlayerRecord()
+	{
+		
+	}
 
     private void InitMapDungeon()
     {

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FixedJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
+    <Compile Include="Assets\Scripts\Ads\RewardedAdsScript.cs" />
     <Compile Include="Assets\Scripts\BackgroundScaler.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
     <Compile Include="Assets\Scripts\FirebaseLeaderboard\FirebaseLeaderboardHandler.cs" />
@@ -308,12 +309,6 @@
     </Reference>
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/SQLitePlugins/Mono.Data.Sqlite.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
@@ -803,6 +798,12 @@
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Monetization">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

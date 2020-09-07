@@ -14,38 +14,47 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        entryContainer = transform.Find("MapContainer");
-        entryTemplate = entryContainer.Find("MapButtonEntry");
+		try
+		{
+			entryContainer = transform.Find("MapContainer");
+			entryTemplate = entryContainer.Find("MapButtonEntry");
 
-        entryTemplate.gameObject.SetActive(false);
+			entryTemplate.gameObject.SetActive(false);
 
-        SQLiteHelper.INSTANCE.OpenDatabase(); // <<< OPEN DB
+			SQLiteHelper.INSTANCE.OpenDatabase(); // <<< OPEN DB
 
-        List<MapModel> allMap = SQLiteHelper.INSTANCE.GetAll_MapTable();
+			List<MapModel> allMap = SQLiteHelper.INSTANCE.GetAll_MapTable();
 
-        List<PlayerMapRecordedModel> allPlayerRecorded = SQLiteHelper.INSTANCE.GetAll_PlayerMapRecorded();
+			List<PlayerMapRecordedModel> allPlayerRecorded = SQLiteHelper.INSTANCE.GetAll_PlayerMapRecorded();
 
-        SQLiteHelper.INSTANCE.CloseDatabase(); // <<< CLOSE DB
+			SQLiteHelper.INSTANCE.CloseDatabase(); // <<< CLOSE DB
 
-        foreach(var map in allMap)
-        {
-            string mapName = map.mapName;
-            string mapMaxLevel = map.mapMaxLevel.ToString();
-            int finishedLevel = 1;
-            double bestTime = 0;
+			foreach (var map in allMap)
+			{
+				int mapID = map.mapID;
+				string mapName = map.mapName;
+				string mapMaxLevel = map.mapMaxLevel.ToString();
+				int finishedLevel = 1;
+				double bestTime = 0;
 
-            PlayerMapRecordedModel playerRecorded = allPlayerRecorded.Find(p => p.mapID == map.mapID);
+				PlayerMapRecordedModel playerRecorded = allPlayerRecorded.Find(p => p.mapID == map.mapID);
 
-            if(playerRecorded != null)
-            {
-                finishedLevel = playerRecorded.finishedLevel;
-                bestTime = playerRecorded.bestTime.TotalMilliseconds;
-            }
+				if (playerRecorded != null)
+				{
+					finishedLevel = playerRecorded.finishedLevel;
+					bestTime = playerRecorded.bestTime.TotalMilliseconds;
+				}
 
-            MapEntry entry = new MapEntry(mapName, mapMaxLevel, finishedLevel.ToString(), bestTime);
-            CreateLeaderboardEntryTransform(entry, entryContainer, mapEntrysTrans);
-        }
-    }
+				MapEntry entry = new MapEntry(mapID, mapName, mapMaxLevel, finishedLevel.ToString(), bestTime);
+				CreateMapEntryTransform(entry, entryContainer, mapEntrysTrans);
+			}
+		}
+		catch (Exception ex)
+		{
+			Debug.Log(ex.Message);
+		}
+		
+	}
 
     // Update is called once per frame
     void Update()
@@ -53,17 +62,12 @@ public class MapManager : MonoBehaviour
         
     }
 
-	public void StartMapDungeon()
-	{       
-		GameManager.Instance.StartMap(GameManager.Map.DUNGEON);
-	}
-
     public void BackToMainMenu()
     {
         GameManager.Instance.StartMap(GameManager.Map.MainMenu);
     }
 
-    private void CreateLeaderboardEntryTransform(MapEntry entry, Transform container, List<Transform> tranformList)
+    private void CreateMapEntryTransform(MapEntry entry, Transform container, List<Transform> tranformList)
     {
         try
         {
@@ -72,16 +76,24 @@ public class MapManager : MonoBehaviour
             RectTransform entryRectTrans = entryTrans.GetComponent<RectTransform>();
             entryRectTrans.anchoredPosition = new Vector2(0, -(entryUIHeight * tranformList.Count));
             entryTrans.gameObject.SetActive(true);
-            Debug.Log($"75");
             entryTrans.Find("MapName").GetComponent<Text>().text = entry.mapName;
-            Debug.Log($"77");
             entryTrans.Find("TimeValue").GetComponent<Text>().text = FirebaseLeaderboardHandler.Instance.TimeSpanToString(entry.bestTime);
-            Debug.Log($"79");
             entryTrans.Find("Highest").GetComponent<Text>().text = entry.finishedLevel;
-            Debug.Log($"81");
             entryTrans.Find("Max").GetComponent<Text>().text = entry.maxLevel;
-            Debug.Log($"83");
-            entryTrans.Find("Avatar").GetComponent<Image>().sprite = Resources.Load<Sprite>("MapAvatar/DungeonMapAvatar");
+			entryTrans.GetComponent<Button>().onClick.AddListener(() =>
+			{
+				StartMap(entry.mapID);
+			});
+
+			if (entry.mapName.Equals(GameManager.Map.DUNGEON.ToString()))
+			{
+				entryTrans.Find("Avatar").GetComponent<Image>().sprite = Resources.Load<Sprite>("MapAvatar/DungeonMapAvatar");
+			}
+			else
+			{
+				//TODO: Handle for other map
+			}
+
             tranformList.Add(entryTrans);
         }
         catch (Exception ex)
@@ -90,17 +102,29 @@ public class MapManager : MonoBehaviour
         }
 
     }
+
+	private void StartMap(int mapID)
+	{
+		switch (mapID)
+		{
+			case 1:
+				GameManager.Instance.StartMap(GameManager.Map.DUNGEON);
+				break;
+		}
+	}
 }
 
 internal class MapEntry
 {
-    public string mapName;
+	public int mapID;
+	public string mapName;
     public string maxLevel;
     public string finishedLevel;
     public double bestTime;
 
-    public MapEntry(string name, string level, string finishedLevel, double bestTime)
+    public MapEntry(int mapID, string name, string level, string finishedLevel, double bestTime)
     {
+		this.mapID = mapID;
         mapName = name;
         maxLevel = level;
         this.finishedLevel = finishedLevel;

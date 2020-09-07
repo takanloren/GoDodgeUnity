@@ -9,8 +9,6 @@ public class GameManager
 {
 	private static GameManager _instance;
 
-    public bool IsGameOver { get; set; } = false;
-
     public RunAttempt ActiveRunAttemp;
 
 	public static GameManager Instance
@@ -54,15 +52,21 @@ public class GameManager
 
     public void ResetAll()
     {
-        IsGameOver = false;
+        if(ActiveRunAttemp != null)
+		{
+			ActiveRunAttemp.IsGameOver = false;
+		}
     }
 
     public async void SetGameOverWithDelayTime(bool state, int time)
     {
         await Task.Delay(time);
 
-        IsGameOver = state;
-    }
+		if (ActiveRunAttemp != null)
+		{
+			ActiveRunAttemp.IsGameOver = state;
+		}
+	}
 
 	public enum Map
 	{

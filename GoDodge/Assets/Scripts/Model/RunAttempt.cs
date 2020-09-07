@@ -10,7 +10,7 @@ public class RunAttempt
     private DateTime _endTime;
     private int _finishedLevel = 1;
     private int _totalTimeRevival;
-
+	private bool _isGameOver;
     public RunAttempt(GameManager.Map map, DateTime startTime)
     {
         _map = map;
@@ -89,5 +89,18 @@ public class RunAttempt
             _totalTimeRevival = value;
         }
     }
+
+	public bool IsGameOver
+	{
+		get
+		{
+			return _isGameOver;
+		}
+
+		set
+		{
+			_isGameOver = value;
+		}
+	}
 
 }
