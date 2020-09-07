@@ -74,12 +74,16 @@
      <Compile Include="Assets\Scripts\Mob\Flying Eye\Movement.cs" />
      <Compile Include="Assets\Scripts\Mob\Goblin\GoblinMovement.cs" />
      <Compile Include="Assets\Scripts\Model\LeadboardEntry.cs" />
+     <Compile Include="Assets\Scripts\Model\MapModel.cs" />
+     <Compile Include="Assets\Scripts\Model\PlayerMapRecordedModel.cs" />
+     <Compile Include="Assets\Scripts\Model\PlayerModel.cs" />
      <Compile Include="Assets\Scripts\Model\RunAttempt.cs" />
      <Compile Include="Assets\Scripts\Music\MusicClass.cs" />
      <Compile Include="Assets\Scripts\Player\EventTrigger.cs" />
      <Compile Include="Assets\Scripts\Player\JoystickController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player\StayInSide.cs" />
+     <Compile Include="Assets\Scripts\SQLite\SQLiteHelper.cs" />
      <Compile Include="Assets\Scripts\Shadow\ShadowEffect.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
      <Compile Include="Assets\Utils\Constants.cs" />
@@ -326,6 +330,9 @@
  </Reference>
  <Reference Include="Firebase.Database">
  <HintPath>E:/Program Files/UnityProject/GoDodgeUnity/GoDodge/Assets/Firebase/Plugins/Firebase.Database.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.Sqlite">
+ <HintPath>E:/Program Files/UnityProject/GoDodgeUnity/GoDodge/Assets/SQLitePlugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>E:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

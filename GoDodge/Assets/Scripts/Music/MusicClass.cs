@@ -6,7 +6,7 @@ public class MusicClass : MonoBehaviour
 {
     private static GameObject instanceGameOn;
     private static GameObject instanceGameOver;
-    private static AudioSource _audioSource;
+    private AudioSource _audioSource;
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);

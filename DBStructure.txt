@@ -1,0 +1,10 @@
+MAP_TABLE
+		MAP_ID(INTEGER) - MapName(TEXT) - MaxLevel(INTEGER) - Unlocked(INTEGER)
+		
+		
+		
+PLAYER_MAP_DATA_TABLE
+		MAP_ID(INTEGER) - FinishedLevel(INTEGER) - BestTimeRecorded(INTEGER)
+		
+PLAYER_TABLE
+		DODGE_COINS (INTEGER)

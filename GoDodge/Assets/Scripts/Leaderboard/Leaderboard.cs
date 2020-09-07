@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Leaderboard : MonoBehaviour
 {
-
+    public Text MapName;
     private Transform entryContainer;
     private Transform entryTemplate;
     private List<Transform> leaderboardTransList = new List<Transform>();
@@ -40,6 +40,8 @@ public class Leaderboard : MonoBehaviour
 
     private void GetAndShowRankByMap(GameManager.Map targetMap)
     {
+        MapName.text = targetMap.ToString();
+
         FirebaseDatabase.DefaultInstance
         .GetReference("Leaderboard")
         .GetValueAsync().ContinueWithOnMainThread(task =>
