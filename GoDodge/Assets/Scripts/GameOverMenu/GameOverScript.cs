@@ -99,20 +99,7 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 
         var totalTimeSpan = GameManager.Instance.ActiveRunAttemp.TotalTimeCost;
 
-        string totalTimeText = "";
-
-        if (totalTimeSpan.TotalMinutes < 1.0)
-        {
-            totalTimeText = String.Format("{0}s", totalTimeSpan.Seconds);
-        }
-        else if (totalTimeSpan.TotalHours < 1.0)
-        {
-            totalTimeText = String.Format("{0}m:{1:D2}s", totalTimeSpan.Minutes, totalTimeSpan.Seconds);
-        }
-        else // more than 1 hour
-        {
-            totalTimeText = String.Format("{0}h:{1:D2}m:{2:D2}s", (int)totalTimeSpan.TotalHours, totalTimeSpan.Minutes, totalTimeSpan.Seconds);
-        }
+        string totalTimeText = FirebaseLeaderboardHandler.Instance.TimeSpanToString(totalTimeSpan.TotalMilliseconds);
 
         return totalTimeText;
     }

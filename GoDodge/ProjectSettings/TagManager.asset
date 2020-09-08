@@ -46,6 +46,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 322421079
+    locked: 0
   - name: Wall
     uniqueID: 946377363
+    locked: 0
+  - name: Effects
+    uniqueID: 1566321095
+    locked: 0
+  - name: GUI
+    uniqueID: 3866977095
     locked: 0

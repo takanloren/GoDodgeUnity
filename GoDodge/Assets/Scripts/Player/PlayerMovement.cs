@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-	public float velocity = 2.5f;
+	public float speed = 2.5f;
 	public Rigidbody2D rb;
 	private Animator anim;
     public Joystick joystick;
@@ -49,11 +49,19 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
+        if(GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect == GameManager.BuffEffects.OnSpeedPotion)
+        {
+            speed = Constants.PLAYER_BOOSTED_SPEED;
+        }else
+        {
+            speed = Constants.PLAYER_NORMAL_SPEED;
+        }
+
         float h = joystick.Horizontal * 100f;
         float v = joystick.Vertical * 100f;
 
         Vector3 tempVect = new Vector3(h, v, 0);
-		tempVect = tempVect.normalized * velocity * Time.deltaTime;
+		tempVect = tempVect.normalized * speed * Time.deltaTime;
 		rb.MovePosition(rb.transform.position);
 		rb.MovePosition(rb.transform.position + tempVect);
 	}

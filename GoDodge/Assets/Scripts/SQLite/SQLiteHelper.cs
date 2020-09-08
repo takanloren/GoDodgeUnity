@@ -61,7 +61,7 @@ public class SQLiteHelper
     {
         Debug.Log("Creating table Player");
         IDbCommand dbcmd = dbConn.CreateCommand();
-        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} ({Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0)";
+        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} ({Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SHIELDS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SPEED_POTION} INTEGER DEFAULT 0)";
         //Create player table
         dbcmd.CommandText = qCreatePlayerTable;
         dbcmd.ExecuteReader();
@@ -146,6 +146,41 @@ public class SQLiteHelper
         InitMapDungeon();
     }
 
+    public PlayerModel LoadPlayerEquipment()
+    {
+        IDbCommand cmnd_read = dbConn.CreateCommand();
+        IDataReader reader;
+        string query = "SELECT * FROM " + Constants.PLAYER_TABLE;
+        cmnd_read.CommandText = query;
+        reader = cmnd_read.ExecuteReader();
+        PlayerModel player = null;
+        while (reader.Read())
+        {
+            player = new PlayerModel(
+               int.Parse(reader[0].ToString()),
+               int.Parse(reader[1].ToString()),
+               int.Parse(reader[2].ToString())
+               );
+        }
+
+        return player;
+    }
+
+    public void InitPlayerEquipment()
+    {
+        // Insert values in table
+        IDbCommand cmnd = dbConn.CreateCommand();
+
+        cmnd.CommandText = "INSERT INTO " + Constants.PLAYER_TABLE
+                        + " ( " + Constants.SQLITE_PLAYER_COINS + ", "
+                        + Constants.SQLITE_PLAYER_SHIELDS + ", "
+                        + Constants.SQLITE_PLAYER_SPEED_POTION + " ) "
+
+                        + "VALUES ( 0, 0, 0) ";
+        Debug.Log("Init player equipment: " + cmnd.CommandText);
+        cmnd.ExecuteNonQuery();
+    }
+
 	public void InitDefaultPlayerRecord()
 	{
 		
@@ -156,28 +191,28 @@ public class SQLiteHelper
         Debug.Log("Initializing map DUNGEON");
         MapModel dungeon = new MapModel(Constants.MAP_DUNGEON_ID, GameManager.Map.DUNGEON.ToString(), 40, true);
 
-        if (NeedToAddMapDungeon())
+        if (NeedToAddMapData(GameManager.Map.DUNGEON))
         {
-            Debug.Log("DUNGEON- Adding data to db");
+            Debug.Log($"DUNGEON- Adding map data to db");
             InsertDataToMapTable(dungeon);
         }
         else
         {
-            Debug.Log("DUNGEON- Existed data");
+            Debug.Log("DUNGEON- Already added data");
         }
     }
 
-    private bool NeedToAddMapDungeon()
+    private bool NeedToAddMapData(GameManager.Map map)
     {
         Debug.Log("DUNGEON- Checking if need to add");
 
         IDbCommand cmnd = dbConn.CreateCommand();
         cmnd.CommandText =
-            "SELECT * FROM " + Constants.MAP_TABLE + " WHERE " + Constants.SQLITE_MAP_ID + " =" + 1;
+            "SELECT * FROM " + Constants.MAP_TABLE + " WHERE " + Constants.SQLITE_MAP_NAME + " ='" + map.ToString() +"'";
         IDataReader reader = cmnd.ExecuteReader();
         while (reader.Read())
         {
-            return !reader[1].ToString().Equals(GameManager.Map.DUNGEON.ToString());
+            return !reader[1].ToString().Equals(map.ToString());
         }
 
         return true;
@@ -265,25 +300,6 @@ public class SQLiteHelper
                int.Parse(reader[0].ToString()), //ID
                int.Parse(reader[1].ToString()), //Finished level
                TimeSpan.FromMilliseconds(int.Parse(reader[2].ToString())) //Best time
-               );
-        }
-
-        return data;
-    }
-
-    public PlayerModel GetPlayerModel()
-    {
-        // Read and print all values in table
-        IDbCommand cmnd_read = dbConn.CreateCommand();
-        IDataReader reader;
-        string query = "SELECT * FROM " + Constants.PLAYER_TABLE;
-        cmnd_read.CommandText = query;
-        reader = cmnd_read.ExecuteReader();
-        PlayerModel data = null;
-        while (reader.Read())
-        {
-            data = new PlayerModel(
-               int.Parse(reader[0].ToString()) // Coins
                );
         }
 

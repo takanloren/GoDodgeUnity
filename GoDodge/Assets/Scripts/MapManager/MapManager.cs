@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
+    public TextMeshProUGUI gemText;
+    public TextMeshProUGUI shieldText;
+    public TextMeshProUGUI speedText;
+
     private Transform entryContainer;
     private Transform entryTemplate;
     private List<MapEntry> mapEntrys = new List<MapEntry>();
     private List<Transform> mapEntrysTrans = new List<Transform>();
+
+
     // Start is called before the first frame update
     void Start()
     {
 		try
 		{
-			entryContainer = transform.Find("MapContainer");
+            InitPlayerResource();
+
+            entryContainer = transform.Find("MapContainer");
 			entryTemplate = entryContainer.Find("MapButtonEntry");
 
 			entryTemplate.gameObject.SetActive(false);
@@ -60,6 +69,13 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void InitPlayerResource()
+    {
+        gemText.text = GameManager.Instance.PlayerEquipment.coins.ToString();
+        shieldText.text = GameManager.Instance.PlayerEquipment.shields.ToString();
+        speedText.text = GameManager.Instance.PlayerEquipment.speed_potion.ToString();
     }
 
     public void BackToMainMenu()

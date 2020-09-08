@@ -10,6 +10,7 @@ public class GameManager
 	private static GameManager _instance;
 
     public RunAttempt ActiveRunAttemp;
+    public PlayerModel PlayerEquipment;
 
 	public static GameManager Instance
 	{
@@ -72,4 +73,9 @@ public class GameManager
 	{
 		MainMenu, HowToPlay, Leaderboard, MapManager, DUNGEON, 
 	}
+
+    public enum BuffEffects
+    {
+        OnNormal, OnSpeedPotion, OnShield,
+    }
 }

@@ -11,6 +11,8 @@ public class RunAttempt
     private int _finishedLevel = 1;
     private int _totalTimeRevival;
 	private bool _isGameOver;
+    private GameManager.BuffEffects _activeBuffEffect = GameManager.BuffEffects.OnNormal;
+
     public RunAttempt(GameManager.Map map, DateTime startTime)
     {
         _map = map;
@@ -27,6 +29,19 @@ public class RunAttempt
         set
         {
             _map = value;
+        }
+    }
+
+    public GameManager.BuffEffects ActiveBuffEffect
+    {
+        get
+        {
+            return _activeBuffEffect;
+        }
+
+        set
+        {
+            _activeBuffEffect = value;
         }
     }
 
