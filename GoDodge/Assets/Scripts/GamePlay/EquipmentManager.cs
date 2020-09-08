@@ -27,6 +27,8 @@ public class EquipmentManager : MonoBehaviour
         {
             GameManager.Instance.PlayerEquipment.shields--;
             GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect = GameManager.BuffEffects.OnShield;
+
+            SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
         }
     }
 
@@ -36,6 +38,8 @@ public class EquipmentManager : MonoBehaviour
         {
             GameManager.Instance.PlayerEquipment.speed_potion--;
             GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect = GameManager.BuffEffects.OnSpeedPotion;
+
+            SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
         }
     }
 }

@@ -20,6 +20,8 @@ public class Constants
     public static string SQLITE_MAP_FINISHED_LEVEL = "finished_level";
     public static string SQLITE_MAP_BEST_TIME = "best_time";
 
+    public static int PLAYER_ID = 1;
+    public static string SQLITE_PLAYER_ID = "player_id";
     public static string SQLITE_PLAYER_COINS = "dodge_coins";
     public static string SQLITE_PLAYER_SHIELDS = "shields";
     public static string SQLITE_PLAYER_SPEED_POTION = "speed_potion";

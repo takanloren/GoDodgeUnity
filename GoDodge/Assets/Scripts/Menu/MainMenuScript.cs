@@ -24,12 +24,12 @@ public class MainMenuScript : MonoBehaviour
         if (SQLiteHelper.INSTANCE.LoadPlayerEquipment() == null)
         {
             //Only init the first time
-            SQLiteHelper.INSTANCE.InitPlayerEquipment();
+            SQLiteHelper.INSTANCE.InsertDataToPlayerTable();
         }
 
         //GameManager.Instance.PlayerEquipment = SQLiteHelper.INSTANCE.LoadPlayerEquipment();
 
-        PlayerModel GM = new PlayerModel(10000, 100, 100);
+        PlayerModel GM = new PlayerModel(Constants.PLAYER_ID, 100, 100, 100);
         GameManager.Instance.PlayerEquipment = GM;
     }
 

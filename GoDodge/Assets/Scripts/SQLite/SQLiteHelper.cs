@@ -35,7 +35,7 @@ public class SQLiteHelper
     public void InitAllTables()
     {
         CreateMapTable();
-        CreatePlayerMapTable();
+        CreatePlayerMapRecordTable();
         CreatePlayerTable();
     }
 
@@ -48,9 +48,9 @@ public class SQLiteHelper
         dbcmd.CommandText = qCreateMapTable;
         dbcmd.ExecuteReader();
     }
-    private void CreatePlayerMapTable()
+    private void CreatePlayerMapRecordTable()
     {
-        Debug.Log("Creating table PlayerMap");
+        Debug.Log("Creating table PlayerMapRecord");
         IDbCommand dbcmd = dbConn.CreateCommand();
         string qCreatePlayerMapTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_MAP_DATA_TABLE} ({Constants.SQLITE_MAP_ID} INTEGER PRIMARY KEY, {Constants.SQLITE_MAP_FINISHED_LEVEL} INTEGER DEFAULT 1, {Constants.SQLITE_MAP_BEST_TIME} INTEGER DEFAULT 0)";
         //Create player - map data table
@@ -61,7 +61,7 @@ public class SQLiteHelper
     {
         Debug.Log("Creating table Player");
         IDbCommand dbcmd = dbConn.CreateCommand();
-        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} ({Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SHIELDS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SPEED_POTION} INTEGER DEFAULT 0)";
+        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} ({Constants.SQLITE_PLAYER_ID} INTEGER ,{Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0,{Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SHIELDS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SPEED_POTION} INTEGER DEFAULT 0)";
         //Create player table
         dbcmd.CommandText = qCreatePlayerTable;
         dbcmd.ExecuteReader();
@@ -114,21 +114,6 @@ public class SQLiteHelper
         cmnd.ExecuteNonQuery();
     }
 
-    public void InsertDataToPlayerTable(PlayerModel model)
-    {
-        // Insert values in table
-        IDbCommand cmnd = dbConn.CreateCommand();
-
-        cmnd.CommandText = "INSERT INTO " + Constants.PLAYER_TABLE
-                        + " ( " + Constants.SQLITE_PLAYER_COINS + " ) "
-
-                        + "VALUES ( "
-
-                        + model.coins + " )";
-
-        cmnd.ExecuteNonQuery();
-    }
-
 	public void UpdatePlayerMapRecord(PlayerMapRecordedModel model)
 	{
 		IDbCommand cmnd = dbConn.CreateCommand();
@@ -146,6 +131,18 @@ public class SQLiteHelper
         InitMapDungeon();
     }
 
+    public void UpdatePlayerEquipment(PlayerModel model)
+    {
+        IDbCommand cmnd = dbConn.CreateCommand();
+
+        cmnd.CommandText = "UPDATE " + Constants.PLAYER_TABLE + " SET "
+                        + Constants.SQLITE_PLAYER_COINS + "=" + model.coins + ", "
+                        + Constants.SQLITE_PLAYER_SHIELDS + "=" + model.shields + ", "
+                        + Constants.SQLITE_PLAYER_SPEED_POTION + "=" + model.speed_potion
+                        + " WHERE " + Constants.SQLITE_PLAYER_ID + "=" + model.id;
+        cmnd.ExecuteNonQuery();
+    }
+
     public PlayerModel LoadPlayerEquipment()
     {
         IDbCommand cmnd_read = dbConn.CreateCommand();
@@ -159,24 +156,26 @@ public class SQLiteHelper
             player = new PlayerModel(
                int.Parse(reader[0].ToString()),
                int.Parse(reader[1].ToString()),
-               int.Parse(reader[2].ToString())
+               int.Parse(reader[2].ToString()),
+               int.Parse(reader[3].ToString())
                );
         }
 
         return player;
     }
 
-    public void InitPlayerEquipment()
+    public void InsertDataToPlayerTable()
     {
         // Insert values in table
         IDbCommand cmnd = dbConn.CreateCommand();
 
         cmnd.CommandText = "INSERT INTO " + Constants.PLAYER_TABLE
-                        + " ( " + Constants.SQLITE_PLAYER_COINS + ", "
+                        + " ( " + Constants.SQLITE_PLAYER_ID + ", "
+                        + Constants.SQLITE_PLAYER_COINS + ", "
                         + Constants.SQLITE_PLAYER_SHIELDS + ", "
                         + Constants.SQLITE_PLAYER_SPEED_POTION + " ) "
 
-                        + "VALUES ( 0, 0, 0) ";
+                        + "VALUES (1, 0, 0, 0) ";
         Debug.Log("Init player equipment: " + cmnd.CommandText);
         cmnd.ExecuteNonQuery();
     }
