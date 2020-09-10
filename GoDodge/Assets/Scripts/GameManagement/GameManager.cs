@@ -62,6 +62,23 @@ public class GameManager
 		}
     }
 
+	public int CalculateGemEarned(int finishedLevel)
+	{
+		int gemEarned = 0;
+		if(finishedLevel == 1)
+		{
+			return 0;
+		}
+
+		gemEarned = Constants.BASE_GEM_EARN_PER_LEVEL * (finishedLevel - 1);
+
+		//Bonus gem on each 10lv finished - each 10lv bonus 20 gem
+		int bonusMultiplier = finishedLevel / 10;
+		int bonusGems = bonusMultiplier * 20;
+
+		return gemEarned + bonusGems;
+	}
+
     public async void SetGameOverWithDelayTime(bool state, int time)
     {
         await Task.Delay(time);

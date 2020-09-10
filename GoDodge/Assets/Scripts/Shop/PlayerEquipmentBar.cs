@@ -24,8 +24,8 @@ public class PlayerEquipmentBar : MonoBehaviour
 
 	private void UpdatePlayerResource()
 	{
-		gemText.text = GameManager.Instance.PlayerEquipment.coins.ToString();
-		shieldText.text = GameManager.Instance.PlayerEquipment.shields.ToString();
-		speedText.text = GameManager.Instance.PlayerEquipment.speed_potion.ToString();
+		gemText.text = GameManager.Instance.PlayerEquipment.GemAmount.ToString();
+		shieldText.text = GameManager.Instance.PlayerEquipment.ShieldAmount.ToString();
+		speedText.text = GameManager.Instance.PlayerEquipment.SpeedPotionAmount.ToString();
 	}
 }

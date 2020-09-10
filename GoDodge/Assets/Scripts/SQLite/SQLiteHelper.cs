@@ -146,9 +146,9 @@ public class SQLiteHelper
         IDbCommand cmnd = dbConn.CreateCommand();
 
         cmnd.CommandText = "UPDATE " + Constants.PLAYER_TABLE + " SET "
-                        + Constants.SQLITE_PLAYER_COINS + "=" + model.coins + ", "
-                        + Constants.SQLITE_PLAYER_SHIELDS + "=" + model.shields + ", "
-                        + Constants.SQLITE_PLAYER_SPEED_POTION + "=" + model.speed_potion
+                        + Constants.SQLITE_PLAYER_COINS + "=" + model.GemAmount + ", "
+                        + Constants.SQLITE_PLAYER_SHIELDS + "=" + model.ShieldAmount + ", "
+                        + Constants.SQLITE_PLAYER_SPEED_POTION + "=" + model.SpeedPotionAmount
                         + " WHERE " + Constants.SQLITE_PLAYER_ID + "=" + model.id;
         cmnd.ExecuteNonQuery();
 

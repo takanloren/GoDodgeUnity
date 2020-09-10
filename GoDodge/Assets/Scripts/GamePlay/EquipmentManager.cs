@@ -17,29 +17,25 @@ public class EquipmentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShieldText.text = GameManager.Instance.PlayerEquipment.shields.ToString();
-        SpeedPotionText.text = GameManager.Instance.PlayerEquipment.speed_potion.ToString();
+        ShieldText.text = GameManager.Instance.PlayerEquipment.ShieldAmount.ToString();
+        SpeedPotionText.text = GameManager.Instance.PlayerEquipment.SpeedPotionAmount.ToString();
     }
 
     public void ActivateShield()
     {
-        if(GameManager.Instance.PlayerEquipment.shields > 0)
+        if(GameManager.Instance.PlayerEquipment.ShieldAmount > 0)
         {
-            GameManager.Instance.PlayerEquipment.shields--;
+            GameManager.Instance.PlayerEquipment.ShieldAmount--;
             GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect = GameManager.BuffEffects.OnShield;
-
-            SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
         }
     }
 
     public void ActivateSpeedPotion()
     {
-        if (GameManager.Instance.PlayerEquipment.speed_potion > 0)
+        if (GameManager.Instance.PlayerEquipment.SpeedPotionAmount > 0)
         {
-            GameManager.Instance.PlayerEquipment.speed_potion--;
+            GameManager.Instance.PlayerEquipment.SpeedPotionAmount--;
             GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect = GameManager.BuffEffects.OnSpeedPotion;
-
-            SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
         }
     }
 }

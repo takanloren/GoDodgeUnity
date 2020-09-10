@@ -27,6 +27,7 @@ public class MainMenuScript : MonoBehaviour
             SQLiteHelper.INSTANCE.InsertDataToPlayerTable();
         }
 
+		//Should be this
         //GameManager.Instance.PlayerEquipment = SQLiteHelper.INSTANCE.LoadPlayerEquipment();
 
         PlayerModel GM = new PlayerModel(Constants.PLAYER_ID, 10000, 100, 100);

@@ -35,7 +35,7 @@ public class PlayerEquipmentHandler : MonoBehaviour
             RemainingBar.SetRemainingTime(0);
             RemainingBar.SetEffectName(string.Empty);
 
-            if (GameManager.Instance.PlayerEquipment.shields <= 0)
+            if (GameManager.Instance.PlayerEquipment.ShieldAmount <= 0)
             {
                 ShieldButton.interactable = false;
             }
@@ -44,7 +44,7 @@ public class PlayerEquipmentHandler : MonoBehaviour
                 ShieldButton.interactable = true;
             }
 
-            if (GameManager.Instance.PlayerEquipment.speed_potion <= 0)
+            if (GameManager.Instance.PlayerEquipment.SpeedPotionAmount <= 0)
             {
                 SpeedButton.interactable = false;
             }

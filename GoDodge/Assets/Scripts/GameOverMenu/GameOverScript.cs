@@ -16,6 +16,7 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
     public TMP_InputField enterNameField;
 	public GameObject respawnButton;
 	public GameObject watchAdsButton;
+	public TextMeshProUGUI gemEarned;
 
 	string respawnRewardPlacementID = Constants.Respawn_Reward_PlacementID;
 	bool testMode = true;
@@ -63,6 +64,8 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 
     public void DisplayGameOverWindow()
     {
+		Time.timeScale = 0f;
+
 		try
 		{
 			PlayMusic(false);
@@ -78,9 +81,13 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
         highestLevel.text = GameManager.Instance.ActiveRunAttemp.FinishedLevel.ToString();
         totalTime.text = CalculateTotalTime();
 
-		SavePlayerRecord();
+		int gemEarnedValue = GameManager.Instance.ActiveRunAttemp.GemEarned;
 
-		Time.timeScale = 0f;
+		gemEarned.text = gemEarnedValue.ToString();
+
+		GameManager.Instance.PlayerEquipment.GemAmount += gemEarnedValue;
+
+		SavePlayerRecord();
 
 		//Maximum respawn 5 times in 1 run attempt
 		if(GameManager.Instance.ActiveRunAttemp.TotalTimeRevival >= 5)

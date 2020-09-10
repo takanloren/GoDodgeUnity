@@ -44,20 +44,17 @@ public class ShopManager : MonoBehaviour, IUnityAdsListener
 			if (placementId == Constants.Shield_Reward_PlacementID)
 			{
 				Util.ShowAndroidToastMessage("You have earned a shield reward");
-				GameManager.Instance.PlayerEquipment.shields++;
-				SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
+				GameManager.Instance.PlayerEquipment.ShieldAmount++;
 			}
 			else if (placementId == Constants.SpeedPotion_Reward_PlacementID)
 			{
 				Util.ShowAndroidToastMessage("You have earned a speed potion reward");
-				GameManager.Instance.PlayerEquipment.speed_potion++;
-				SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
+				GameManager.Instance.PlayerEquipment.SpeedPotionAmount++;
 			}
 			else if (placementId == Constants.Gem_Reward_PlacementID)
 			{
 				Util.ShowAndroidToastMessage("You have earned 50 gems reward");
-				GameManager.Instance.PlayerEquipment.coins += Constants.GEM_ADS_REWARD;
-				SQLiteHelper.INSTANCE.UpdatePlayerEquipment(GameManager.Instance.PlayerEquipment);
+				GameManager.Instance.PlayerEquipment.GemAmount += Constants.GEM_ADS_REWARD;
 			}
 		}
 		else if (showResult == ShowResult.Skipped)
@@ -124,9 +121,9 @@ public class ShopManager : MonoBehaviour, IUnityAdsListener
 	{
 		if (ableToBuyItem(Constants.SHIELD_PRICE))
 		{
-			GameManager.Instance.PlayerEquipment.coins -= Constants.SHIELD_PRICE;
+			GameManager.Instance.PlayerEquipment.GemAmount -= Constants.SHIELD_PRICE;
 
-			GameManager.Instance.PlayerEquipment.shields++;
+			GameManager.Instance.PlayerEquipment.ShieldAmount++;
 
 			Util.ShowAndroidToastMessage("You have bougth a shield!");
 		}
@@ -136,11 +133,11 @@ public class ShopManager : MonoBehaviour, IUnityAdsListener
 	{
 		if (ableToBuyItem(Constants.SPEED_POTION_PRICE))
 		{
-			GameManager.Instance.PlayerEquipment.coins -= Constants.SPEED_POTION_PRICE;
+			GameManager.Instance.PlayerEquipment.GemAmount -= Constants.SPEED_POTION_PRICE;
 
-			GameManager.Instance.PlayerEquipment.speed_potion++;
+			GameManager.Instance.PlayerEquipment.SpeedPotionAmount++;
 
-			Util.ShowAndroidToastMessage("You have bougth a speed potion!");
+			Util.ShowAndroidToastMessage("You have bought a speed boost potion!");
 		}
 	}
 
@@ -185,7 +182,7 @@ public class ShopManager : MonoBehaviour, IUnityAdsListener
 
 	private bool ableToBuyItem(int price)
 	{
-		int playerGemAmount = GameManager.Instance.PlayerEquipment.coins;
+		int playerGemAmount = GameManager.Instance.PlayerEquipment.GemAmount;
 
 		if(playerGemAmount >= price)
 		{

@@ -12,6 +12,7 @@ public class RunAttempt
     private int _totalTimeRevival;
 	private bool _isGameOver;
     private GameManager.BuffEffects _activeBuffEffect = GameManager.BuffEffects.OnNormal;
+	private int _gemEarned;
 
     public RunAttempt(GameManager.Map map, DateTime startTime)
     {
@@ -118,4 +119,11 @@ public class RunAttempt
 		}
 	}
 
+	public int GemEarned
+	{
+		get
+		{
+			return GameManager.Instance.CalculateGemEarned(_finishedLevel);
+		}
+	}
 }

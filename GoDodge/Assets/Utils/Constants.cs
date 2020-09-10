@@ -41,4 +41,5 @@ public class Constants
 	public static int GEM_ADS_REWARD = 50;
 	public static int SHIELD_PRICE = 100;
 	public static int SPEED_POTION_PRICE = 80;
+	public static int BASE_GEM_EARN_PER_LEVEL = 4;
 }
