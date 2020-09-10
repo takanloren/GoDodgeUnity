@@ -11,8 +11,8 @@ public class PlayerEquipmentHandler : MonoBehaviour
     public ParticleSystem SpeedAura;
     public EffectRemainingBar RemainingBar;
 
-    private float shieldTimeRemaining = 5;
-    private float speedPotionTimeRemaining = 5;
+	private float shieldTimeRemaining = Constants.SHIELD_TIME;
+    private float speedPotionTimeRemaining = Constants.SPEED_POTION_TIME;
     private bool timerIsRunning = false;
 
     // Start is called before the first frame update
@@ -29,6 +29,16 @@ public class PlayerEquipmentHandler : MonoBehaviour
             timerIsRunning = true;
             ShieldButton.interactable = false;
             SpeedButton.interactable = false;
+
+			switch (GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect)
+			{
+				case GameManager.BuffEffects.OnShield:
+					RemainingBar.SetSliderMaxValue(Constants.SHIELD_TIME);
+					break;
+				case GameManager.BuffEffects.OnSpeedPotion:
+					RemainingBar.SetSliderMaxValue(Constants.SPEED_POTION_TIME);
+					break;
+			}
         }
         else
         {
@@ -75,7 +85,7 @@ public class PlayerEquipmentHandler : MonoBehaviour
                     RemainingBar.SetEffectName(string.Empty);
 
                     Debug.Log("Time has run out!");
-                    shieldTimeRemaining = 5;
+                    shieldTimeRemaining = Constants.SHIELD_TIME;
                     timerIsRunning = false;
                     GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect = GameManager.BuffEffects.OnNormal;
                     ShieldAura.gameObject.SetActive(false);
@@ -98,7 +108,7 @@ public class PlayerEquipmentHandler : MonoBehaviour
                     RemainingBar.SetEffectName(string.Empty);
 
                     Debug.Log("Time has run out!");
-                    speedPotionTimeRemaining = 5;
+                    speedPotionTimeRemaining = Constants.SPEED_POTION_TIME;
                     timerIsRunning = false;
                     GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect = GameManager.BuffEffects.OnNormal;
 

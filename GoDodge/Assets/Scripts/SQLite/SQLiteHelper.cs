@@ -43,7 +43,7 @@ public class SQLiteHelper
     {
         Debug.Log("Creating table Map");
         IDbCommand dbcmd = dbConn.CreateCommand();
-        string qCreateMapTable = $"CREATE TABLE IF NOT EXISTS {Constants.MAP_TABLE} ({Constants.SQLITE_MAP_ID} INTEGER PRIMARY KEY, {Constants.SQLITE_MAP_NAME} TEXT, {Constants.SQLITE_MAP_MAX_LEVEL} INTEGER, {Constants.SQLITE_MAP_UNLOCKED} INTEGER DEFAULT 0)";
+        string qCreateMapTable = $"CREATE TABLE IF NOT EXISTS {Constants.SQLITE_MAP_TABLE} ({Constants.SQLITE_MAP_ID} INTEGER PRIMARY KEY, {Constants.SQLITE_MAP_NAME} TEXT, {Constants.SQLITE_MAP_MAX_LEVEL} INTEGER, {Constants.SQLITE_MAP_UNLOCKED} INTEGER DEFAULT 0)";
         //Create map table
         dbcmd.CommandText = qCreateMapTable;
         dbcmd.ExecuteReader();
@@ -52,7 +52,7 @@ public class SQLiteHelper
     {
         Debug.Log("Creating table PlayerMapRecord");
         IDbCommand dbcmd = dbConn.CreateCommand();
-        string qCreatePlayerMapTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_MAP_DATA_TABLE} ({Constants.SQLITE_MAP_ID} INTEGER PRIMARY KEY, {Constants.SQLITE_MAP_FINISHED_LEVEL} INTEGER DEFAULT 1, {Constants.SQLITE_MAP_BEST_TIME} INTEGER DEFAULT 0)";
+        string qCreatePlayerMapTable = $"CREATE TABLE IF NOT EXISTS {Constants.SQLITE_PLAYER_MAP_DATA_TABLE} ({Constants.SQLITE_MAP_ID} INTEGER PRIMARY KEY, {Constants.SQLITE_MAP_FINISHED_LEVEL} INTEGER DEFAULT 1, {Constants.SQLITE_MAP_BEST_TIME} INTEGER DEFAULT 0)";
         //Create player - map data table
         dbcmd.CommandText = qCreatePlayerMapTable;
         dbcmd.ExecuteReader();
@@ -61,7 +61,7 @@ public class SQLiteHelper
     {
         Debug.Log("Creating table Player");
         IDbCommand dbcmd = dbConn.CreateCommand();
-        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} " +
+        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.SQLITE_PLAYER_TABLE} " +
 			$"({Constants.SQLITE_PLAYER_ID} INTEGER ," +
 			$" {Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0," +
 			$" {Constants.SQLITE_PLAYER_SHIELDS} INTEGER DEFAULT 0," +
@@ -81,7 +81,7 @@ public class SQLiteHelper
         // Insert values in table
         IDbCommand cmnd = dbConn.CreateCommand();
 
-        cmnd.CommandText = "INSERT INTO " + Constants.MAP_TABLE
+        cmnd.CommandText = "INSERT INTO " + Constants.SQLITE_MAP_TABLE
                         + " ( "
                         + Constants.SQLITE_MAP_ID + ", "
                         + Constants.SQLITE_MAP_NAME + ", "
@@ -103,7 +103,7 @@ public class SQLiteHelper
         // Insert values in table
         IDbCommand cmnd = dbConn.CreateCommand();
 
-        cmnd.CommandText = "INSERT OR IGNORE INTO " + Constants.PLAYER_MAP_DATA_TABLE
+        cmnd.CommandText = "INSERT OR IGNORE INTO " + Constants.SQLITE_PLAYER_MAP_DATA_TABLE
                         + " ( "
                         + Constants.SQLITE_MAP_ID + ", "
                         + Constants.SQLITE_MAP_FINISHED_LEVEL + ", "
@@ -124,7 +124,7 @@ public class SQLiteHelper
 
 		IDbCommand cmnd = dbConn.CreateCommand();
 
-		cmnd.CommandText = "UPDATE " + Constants.PLAYER_MAP_DATA_TABLE + " SET "
+		cmnd.CommandText = "UPDATE " + Constants.SQLITE_PLAYER_MAP_DATA_TABLE + " SET "
 						+ Constants.SQLITE_MAP_FINISHED_LEVEL + "=" + model.finishedLevel + ", "
 						+ Constants.SQLITE_MAP_BEST_TIME + "=" + model.bestTime.TotalMilliseconds
 						+ " WHERE " + Constants.SQLITE_MAP_ID + "=" + model.mapID;
@@ -145,7 +145,7 @@ public class SQLiteHelper
 
         IDbCommand cmnd = dbConn.CreateCommand();
 
-        cmnd.CommandText = "UPDATE " + Constants.PLAYER_TABLE + " SET "
+        cmnd.CommandText = "UPDATE " + Constants.SQLITE_PLAYER_TABLE + " SET "
                         + Constants.SQLITE_PLAYER_COINS + "=" + model.GemAmount + ", "
                         + Constants.SQLITE_PLAYER_SHIELDS + "=" + model.ShieldAmount + ", "
                         + Constants.SQLITE_PLAYER_SPEED_POTION + "=" + model.SpeedPotionAmount
@@ -159,7 +159,7 @@ public class SQLiteHelper
     {
         IDbCommand cmnd_read = dbConn.CreateCommand();
         IDataReader reader;
-        string query = "SELECT * FROM " + Constants.PLAYER_TABLE;
+        string query = "SELECT * FROM " + Constants.SQLITE_PLAYER_TABLE;
         cmnd_read.CommandText = query;
         reader = cmnd_read.ExecuteReader();
         PlayerModel player = null;
@@ -181,7 +181,7 @@ public class SQLiteHelper
         // Insert values in table
         IDbCommand cmnd = dbConn.CreateCommand();
 
-        cmnd.CommandText = "INSERT INTO " + Constants.PLAYER_TABLE
+        cmnd.CommandText = "INSERT INTO " + Constants.SQLITE_PLAYER_TABLE
                         + " ( " + Constants.SQLITE_PLAYER_ID + ", "
                         + Constants.SQLITE_PLAYER_COINS + ", "
                         + Constants.SQLITE_PLAYER_SHIELDS + ", "
@@ -219,7 +219,7 @@ public class SQLiteHelper
 
         IDbCommand cmnd = dbConn.CreateCommand();
         cmnd.CommandText =
-            "SELECT * FROM " + Constants.MAP_TABLE + " WHERE " + Constants.SQLITE_MAP_NAME + " ='" + map.ToString() +"'";
+            "SELECT * FROM " + Constants.SQLITE_MAP_TABLE + " WHERE " + Constants.SQLITE_MAP_NAME + " ='" + map.ToString() +"'";
         IDataReader reader = cmnd.ExecuteReader();
         while (reader.Read())
         {
@@ -234,7 +234,7 @@ public class SQLiteHelper
         // Read and print all values in table
         IDbCommand cmnd_read = dbConn.CreateCommand();
         IDataReader reader;
-        string query = "SELECT * FROM " + Constants.MAP_TABLE;
+        string query = "SELECT * FROM " + Constants.SQLITE_MAP_TABLE;
         cmnd_read.CommandText = query;
         reader = cmnd_read.ExecuteReader();
         List<MapModel> map = new List<MapModel>();
@@ -256,7 +256,7 @@ public class SQLiteHelper
         // Read and print all values in table
         IDbCommand cmnd_read = dbConn.CreateCommand();
         IDataReader reader;
-        string query = "SELECT * FROM "+ Constants.MAP_TABLE + " WHERE " + Constants.SQLITE_MAP_ID + " =" + id;
+        string query = "SELECT * FROM "+ Constants.SQLITE_MAP_TABLE + " WHERE " + Constants.SQLITE_MAP_ID + " =" + id;
         cmnd_read.CommandText = query;
         reader = cmnd_read.ExecuteReader();
         MapModel map = null;
@@ -280,7 +280,7 @@ public class SQLiteHelper
         // Read and print all values in table
         IDbCommand cmnd_read = dbConn.CreateCommand();
         IDataReader reader;
-        string query = "SELECT * FROM " + Constants.PLAYER_MAP_DATA_TABLE;
+        string query = "SELECT * FROM " + Constants.SQLITE_PLAYER_MAP_DATA_TABLE;
         cmnd_read.CommandText = query;
         reader = cmnd_read.ExecuteReader();
         List<PlayerMapRecordedModel> data = new List<PlayerMapRecordedModel>();
@@ -301,7 +301,7 @@ public class SQLiteHelper
         // Read and print all values in table
         IDbCommand cmnd_read = dbConn.CreateCommand();
         IDataReader reader;
-        string query = "SELECT * FROM " + Constants.PLAYER_MAP_DATA_TABLE + " WHERE " + Constants.SQLITE_MAP_ID + " =" + mapID;
+        string query = "SELECT * FROM " + Constants.SQLITE_PLAYER_MAP_DATA_TABLE + " WHERE " + Constants.SQLITE_MAP_ID + " =" + mapID;
         cmnd_read.CommandText = query;
         reader = cmnd_read.ExecuteReader();
         PlayerMapRecordedModel data = null;

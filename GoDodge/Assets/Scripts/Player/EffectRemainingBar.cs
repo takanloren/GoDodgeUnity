@@ -17,4 +17,9 @@ public class EffectRemainingBar : MonoBehaviour
     {
         effectName.text = name;
     }
+
+	public void SetSliderMaxValue(float maxValue)
+	{
+		slider.maxValue = maxValue;
+	}
 }

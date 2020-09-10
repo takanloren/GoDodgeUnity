@@ -30,15 +30,15 @@ public class MainMenuScript : MonoBehaviour
 		//Should be this
         //GameManager.Instance.PlayerEquipment = SQLiteHelper.INSTANCE.LoadPlayerEquipment();
 
-        PlayerModel GM = new PlayerModel(Constants.PLAYER_ID, 10000, 100, 100);
+        PlayerModel GM = new PlayerModel(Constants.CONST_PLAYER_ID, 10000, 100, 100);
         GameManager.Instance.PlayerEquipment = GM;
     }
 
     private void ClearDB()
     {
-        SQLiteHelper.INSTANCE.DeleteTable(Constants.MAP_TABLE);
-        SQLiteHelper.INSTANCE.DeleteTable(Constants.PLAYER_MAP_DATA_TABLE);
-        SQLiteHelper.INSTANCE.DeleteTable(Constants.PLAYER_TABLE);
+        SQLiteHelper.INSTANCE.DeleteTable(Constants.SQLITE_MAP_TABLE);
+        SQLiteHelper.INSTANCE.DeleteTable(Constants.SQLITE_PLAYER_MAP_DATA_TABLE);
+        SQLiteHelper.INSTANCE.DeleteTable(Constants.SQLITE_PLAYER_TABLE);
     }
 
     void Start()

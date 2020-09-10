@@ -5489,7 +5489,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This item will make you become immortal in 5 second. Use it wisely, it
+  m_text: This item will make you become immortal in 3 second. Use it wisely, it
     will save your life one day.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76ed0a3fe80791b478203eddf683b53e, type: 2}
@@ -6116,7 +6116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "This item will boost your movement in 5 second, and just like a wind ...
+  m_text: "This item will boost your movement in 3 second, and just like a wind ...
     \nCatch me if you can!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76ed0a3fe80791b478203eddf683b53e, type: 2}

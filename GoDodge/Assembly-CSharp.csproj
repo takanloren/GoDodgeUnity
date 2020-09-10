@@ -348,6 +348,27 @@
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="Security">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Stores">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="Editor">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Apple">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>
@@ -817,7 +838,12 @@
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{793D57D1-F49A-75B5-EC51-D8A0482DE938}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -143,15 +143,17 @@ public class ShopManager : MonoBehaviour, IUnityAdsListener
 
 	public void ClickedOnBuyGem099()
 	{
-
+		IAPManager.INSTANCE.BuyGem099();
 	}
+
 	public void ClickedOnBuyGem499()
 	{
-
+		IAPManager.INSTANCE.BuyGem499();
 	}
+
 	public void ClickedOnBuyGem999()
 	{
-
+		IAPManager.INSTANCE.BuyGem999();
 	}
 
 	public void BackToMapManager()
