@@ -31,4 +31,14 @@ public class Constants
 
     public static string PLAYER_EFFECT_SHIELD = "SHIELD";
     public static string PLAYER_EFFECT_SPEED = "SPEED";
+
+	public static string GOOGLE_PLAY_GAME_ID = "3808815";
+	public static string Shield_Reward_PlacementID = "shieldReward";
+	public static string SpeedPotion_Reward_PlacementID = "speedPotionReward";
+	public static string Gem_Reward_PlacementID = "gemReward";
+	public static string Respawn_Reward_PlacementID = "respawnReward";
+
+	public static int GEM_ADS_REWARD = 50;
+	public static int SHIELD_PRICE = 100;
+	public static int SPEED_POTION_PRICE = 80;
 }

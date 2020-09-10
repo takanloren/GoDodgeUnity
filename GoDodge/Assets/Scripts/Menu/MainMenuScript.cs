@@ -29,7 +29,7 @@ public class MainMenuScript : MonoBehaviour
 
         //GameManager.Instance.PlayerEquipment = SQLiteHelper.INSTANCE.LoadPlayerEquipment();
 
-        PlayerModel GM = new PlayerModel(Constants.PLAYER_ID, 100, 100, 100);
+        PlayerModel GM = new PlayerModel(Constants.PLAYER_ID, 10000, 100, 100);
         GameManager.Instance.PlayerEquipment = GM;
     }
 

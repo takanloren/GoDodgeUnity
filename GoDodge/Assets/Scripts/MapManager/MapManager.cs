@@ -83,7 +83,12 @@ public class MapManager : MonoBehaviour
         GameManager.Instance.StartMap(GameManager.Map.MainMenu);
     }
 
-    private void CreateMapEntryTransform(MapEntry entry, Transform container, List<Transform> tranformList)
+	public void GoToShop()
+	{
+		GameManager.Instance.StartMap(GameManager.Map.Shop);
+	}
+
+	private void CreateMapEntryTransform(MapEntry entry, Transform container, List<Transform> tranformList)
     {
         try
         {

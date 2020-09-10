@@ -38,6 +38,9 @@ public class GameManager
             case Map.MapManager:
                 SceneManager.LoadScene("MapManager");
                 break;
+			case Map.Shop:
+				SceneManager.LoadScene("Shop");
+				break;
 			case Map.DUNGEON:
 				StartMapDungeon();
 				break;
@@ -71,7 +74,7 @@ public class GameManager
 
 	public enum Map
 	{
-		MainMenu, HowToPlay, Leaderboard, MapManager, DUNGEON, 
+		MainMenu, HowToPlay, Leaderboard, MapManager, Shop, DUNGEON, 
 	}
 
     public enum BuffEffects

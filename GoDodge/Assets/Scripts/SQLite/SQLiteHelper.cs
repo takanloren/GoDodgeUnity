@@ -61,7 +61,11 @@ public class SQLiteHelper
     {
         Debug.Log("Creating table Player");
         IDbCommand dbcmd = dbConn.CreateCommand();
-        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} ({Constants.SQLITE_PLAYER_ID} INTEGER ,{Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0,{Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SHIELDS} INTEGER DEFAULT 0, {Constants.SQLITE_PLAYER_SPEED_POTION} INTEGER DEFAULT 0)";
+        string qCreatePlayerTable = $"CREATE TABLE IF NOT EXISTS {Constants.PLAYER_TABLE} " +
+			$"({Constants.SQLITE_PLAYER_ID} INTEGER ," +
+			$" {Constants.SQLITE_PLAYER_COINS} INTEGER DEFAULT 0," +
+			$" {Constants.SQLITE_PLAYER_SHIELDS} INTEGER DEFAULT 0," +
+			$" {Constants.SQLITE_PLAYER_SPEED_POTION} INTEGER DEFAULT 0)";
         //Create player table
         dbcmd.CommandText = qCreatePlayerTable;
         dbcmd.ExecuteReader();
@@ -116,6 +120,8 @@ public class SQLiteHelper
 
 	public void UpdatePlayerMapRecord(PlayerMapRecordedModel model)
 	{
+		OpenDatabase();
+
 		IDbCommand cmnd = dbConn.CreateCommand();
 
 		cmnd.CommandText = "UPDATE " + Constants.PLAYER_MAP_DATA_TABLE + " SET "
@@ -123,6 +129,8 @@ public class SQLiteHelper
 						+ Constants.SQLITE_MAP_BEST_TIME + "=" + model.bestTime.TotalMilliseconds
 						+ " WHERE " + Constants.SQLITE_MAP_ID + "=" + model.mapID;
 		cmnd.ExecuteNonQuery();
+
+		CloseDatabase();
 	}
 
 
@@ -133,6 +141,8 @@ public class SQLiteHelper
 
     public void UpdatePlayerEquipment(PlayerModel model)
     {
+		OpenDatabase();
+
         IDbCommand cmnd = dbConn.CreateCommand();
 
         cmnd.CommandText = "UPDATE " + Constants.PLAYER_TABLE + " SET "
@@ -141,6 +151,8 @@ public class SQLiteHelper
                         + Constants.SQLITE_PLAYER_SPEED_POTION + "=" + model.speed_potion
                         + " WHERE " + Constants.SQLITE_PLAYER_ID + "=" + model.id;
         cmnd.ExecuteNonQuery();
+
+		CloseDatabase();
     }
 
     public PlayerModel LoadPlayerEquipment()

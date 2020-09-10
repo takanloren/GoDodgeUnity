@@ -15,18 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/MapManager.unity
     guid: d002f67bb75794b4d92e333506c7e7d7
   - enabled: 1
+    path: Assets/Scenes/Shop.unity
+    guid: 7799e877eff9e77469bc9dfb4a2880a5
+  - enabled: 1
     path: Assets/Scenes/Dungeon/Dungeon_Level_1.unity
     guid: 26d195455ad286e449677f9cfc391661
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/Dungeon_Level_2.unity
-    guid: fa4952d6e4e027c4c993a945295727f6
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/Dungeon_Level_3.unity
-    guid: ef7ff3e816d69bc44939c4506d8cf70e
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/Dungeon_Level_4.unity
-    guid: c0863e5955f6e424dbdcf43952fee18b
-  - enabled: 1
-    path: Assets/Scenes/Dungeon/Dungeon_Level_5.unity
-    guid: e4ea9f208ae393f4fb385a62fd6d635c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

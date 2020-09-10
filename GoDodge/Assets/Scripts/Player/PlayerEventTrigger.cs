@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerEventTrigger : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class PlayerEventTrigger : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip explosionAC;
     public AudioClip enterGateAC;
+
+	public Image black;
+	public Animator fadeAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +54,7 @@ public class PlayerEventTrigger : MonoBehaviour
             case "Door":
                 audioSource.PlayOneShot(enterGateAC, 1);
                 GameManager.Instance.ActiveRunAttemp.FinishedLevel++;
+				StartCoroutine(Fading());
 				SceneManager.LoadScene(GetMapScenePrefix(GameManager.Instance.ActiveRunAttemp.Map) + GameManager.Instance.ActiveRunAttemp.FinishedLevel);
 				break;
 
@@ -68,4 +73,10 @@ public class PlayerEventTrigger : MonoBehaviour
                 return "";
         }
     }
+
+	IEnumerator Fading()
+	{
+		fadeAnim.SetBool("Fade", true);
+		yield return new WaitUntil(() => black.color.a == 1);
+	}
 }

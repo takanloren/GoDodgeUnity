@@ -17,8 +17,7 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 	public GameObject respawnButton;
 	public GameObject watchAdsButton;
 
-	string rewardPlacementID = "rewardedVideo";
-	string gameId = "3808815";
+	string respawnRewardPlacementID = Constants.Respawn_Reward_PlacementID;
 	bool testMode = true;
 	private bool showingGOMenuUI = false;
 
@@ -29,7 +28,7 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 		watchAdsButton.SetActive(true);
 
 		Advertisement.AddListener(this);
-		Advertisement.Initialize(gameId, testMode);
+		Advertisement.Initialize(Constants.GOOGLE_PLAY_GAME_ID, testMode);
 
 		gameOverlayUI.SetActive(false);
         gameOverMenuUI.SetActive(false);
@@ -234,7 +233,7 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 	public void OnUnityAdsReady(string placementId)
 	{
 		// If the ready Placement is rewarded, activate the button: 
-		if (placementId == rewardPlacementID)
+		if (placementId == respawnRewardPlacementID)
 		{
 			watchAdsButton.GetComponent<Button>().interactable = true;
 		}
@@ -279,9 +278,9 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 	public void ShowRewardedVideo()
 	{
 		// Check if UnityAds ready before calling Show method:
-		if (Advertisement.IsReady(rewardPlacementID))
+		if (Advertisement.IsReady(respawnRewardPlacementID))
 		{
-			Advertisement.Show(rewardPlacementID);
+			Advertisement.Show(respawnRewardPlacementID);
 		}
 		else
 		{
