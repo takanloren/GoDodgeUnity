@@ -26,7 +26,7 @@ public class Constants
     public static string SQLITE_PLAYER_SHIELDS = "shields";
     public static string SQLITE_PLAYER_SPEED_POTION = "speed_potion";
 
-    public static float PLAYER_NORMAL_SPEED = 2.5f;
+    public static float PLAYER_NORMAL_SPEED = 3f;
     public static float PLAYER_BOOSTED_SPEED = 5f;
 
     public static string PLAYER_EFFECT_SHIELD = "SHIELD";
