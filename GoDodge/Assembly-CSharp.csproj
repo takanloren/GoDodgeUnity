@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Player\StayInSide.cs" />
     <Compile Include="Assets\Scripts\SQLite\SQLiteHelper.cs" />
     <Compile Include="Assets\Scripts\Shadow\ShadowEffect.cs" />
+    <Compile Include="Assets\Scripts\Shop\PlayerEquipmentBar.cs" />
     <Compile Include="Assets\Scripts\Shop\ShopManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Utils\Constants.cs" />

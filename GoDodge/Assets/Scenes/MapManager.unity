@@ -925,6 +925,7 @@ GameObject:
   - component: {fileID: 608546309}
   - component: {fileID: 608546311}
   - component: {fileID: 608546310}
+  - component: {fileID: 608546312}
   m_Layer: 5
   m_Name: TopBar
   m_TagString: Untagged
@@ -991,6 +992,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608546308}
   m_CullTransparentMesh: 0
+--- !u!114 &608546312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608546308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8448a924862257e4c93312c6c08b3349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gemText: {fileID: 1140883612}
+  shieldText: {fileID: 1503039505}
+  speedText: {fileID: 755344087}
 --- !u!1 &619692997
 GameObject:
   m_ObjectHideFlags: 0

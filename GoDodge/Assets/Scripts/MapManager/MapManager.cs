@@ -8,10 +8,6 @@ using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
-    public TextMeshProUGUI gemText;
-    public TextMeshProUGUI shieldText;
-    public TextMeshProUGUI speedText;
-
     private Transform entryContainer;
     private Transform entryTemplate;
     private List<MapEntry> mapEntrys = new List<MapEntry>();
@@ -23,8 +19,6 @@ public class MapManager : MonoBehaviour
     {
 		try
 		{
-            InitPlayerResource();
-
             entryContainer = transform.Find("MapContainer");
 			entryTemplate = entryContainer.Find("MapButtonEntry");
 
@@ -69,13 +63,6 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void InitPlayerResource()
-    {
-        gemText.text = GameManager.Instance.PlayerEquipment.coins.ToString();
-        shieldText.text = GameManager.Instance.PlayerEquipment.shields.ToString();
-        speedText.text = GameManager.Instance.PlayerEquipment.speed_potion.ToString();
     }
 
     public void BackToMainMenu()
