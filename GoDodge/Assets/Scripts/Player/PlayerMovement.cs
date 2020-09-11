@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,21 +50,31 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
-        if(GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect == GameManager.BuffEffects.OnSpeedPotion)
-        {
-            speed = Constants.PLAYER_BOOSTED_SPEED;
-        }else
-        {
-            speed = Constants.PLAYER_NORMAL_SPEED;
-        }
+		try
+		{
+			if (GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect == GameManager.BuffEffects.OnSpeedPotion)
+			{
+				speed = Constants.PLAYER_BOOSTED_SPEED;
+			}
+			else
+			{
+				speed = Constants.PLAYER_NORMAL_SPEED;
+			}
 
-        float h = joystick.Horizontal * 100f;
-        float v = joystick.Vertical * 100f;
+			float h = joystick.Horizontal * 100f;
+			float v = joystick.Vertical * 100f;
 
-        Vector3 tempVect = new Vector3(h, v, 0);
-		tempVect = tempVect.normalized * speed * Time.deltaTime;
-		rb.MovePosition(rb.transform.position);
-		rb.MovePosition(rb.transform.position + tempVect);
+			Vector3 tempVect = new Vector3(h, v, 0);
+			tempVect = tempVect.normalized * speed * Time.deltaTime;
+			rb.MovePosition(rb.transform.position);
+			rb.MovePosition(rb.transform.position + tempVect);
+		}
+		catch (Exception ex)
+		{
+			Debug.LogError(ex.Message);
+		}
+
+		
 	}
 
 	void MoveAnimation(MoveDirection moveDirection)

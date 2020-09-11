@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\Mob\Flying Eye\MobSpawnManager.cs" />
     <Compile Include="Assets\Scripts\Mob\Flying Eye\Movement.cs" />
     <Compile Include="Assets\Scripts\Mob\Goblin\GoblinMovement.cs" />
+    <Compile Include="Assets\Scripts\Mob\Mushroom\MushroomMovement.cs" />
     <Compile Include="Assets\Scripts\Model\LeadboardEntry.cs" />
     <Compile Include="Assets\Scripts\Model\MapModel.cs" />
     <Compile Include="Assets\Scripts\Model\PlayerMapRecordedModel.cs" />
@@ -333,6 +334,27 @@
     <Reference Include="Unity.Tasks">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Parse/Plugins/dotNet45/Unity.Tasks.dll</HintPath>
     </Reference>
+    <Reference Include="Editor">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Purchasing.Common">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Stores">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
+    </Reference>
+    <Reference Include="Apple">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
+    </Reference>
+    <Reference Include="FacebookStore">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Security">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
+    </Reference>
+    <Reference Include="winrt">
+      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Data.Sqlite">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/SQLitePlugins/Mono.Data.Sqlite.dll</HintPath>
     </Reference>
@@ -347,27 +369,6 @@
     </Reference>
     <Reference Include="UnityEngine.Purchasing">
       <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Library/PackageCache/com.unity.purchasing@2.0.6/UnityEngine.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="Security">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Security/live/Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Stores">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Stores.dll</HintPath>
-    </Reference>
-    <Reference Include="Editor">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Purchasing.Common">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Purchasing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="winrt">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/winrt/winrt.dll</HintPath>
-    </Reference>
-    <Reference Include="FacebookStore">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Facebook/FacebookStore.dll</HintPath>
-    </Reference>
-    <Reference Include="Apple">
-      <HintPath>D:/Program Files/UnityProject/GoDodge/GoDodgeUnity/GoDodge/Assets/Plugins/UnityPurchasing/Bin/Apple/Apple.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

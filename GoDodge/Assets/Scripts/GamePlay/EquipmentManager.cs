@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +18,16 @@ public class EquipmentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShieldText.text = GameManager.Instance.PlayerEquipment.ShieldAmount.ToString();
-        SpeedPotionText.text = GameManager.Instance.PlayerEquipment.SpeedPotionAmount.ToString();
+		try
+		{
+			ShieldText.text = GameManager.Instance.PlayerEquipment.ShieldAmount.ToString();
+			SpeedPotionText.text = GameManager.Instance.PlayerEquipment.SpeedPotionAmount.ToString();
+		}
+		catch(Exception ex)
+		{
+			Debug.LogError(ex.Message);
+		}
+
     }
 
     public void ActivateShield()

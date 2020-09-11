@@ -9,8 +9,44 @@ public class GameManager
 {
 	private static GameManager _instance;
 
-    public RunAttempt ActiveRunAttemp;
-    public PlayerModel PlayerEquipment;
+	private RunAttempt _activeRunAttempt;
+	private PlayerModel _playerEquipment;
+    public RunAttempt ActiveRunAttemp
+	{
+		get
+		{
+			//Just use for debug and testing
+			if(_activeRunAttempt == null)
+			{
+				_activeRunAttempt = new RunAttempt(Map.DUNGEON, DateTime.Now);
+			}
+
+			return _activeRunAttempt;
+		}
+
+		set
+		{
+			_activeRunAttempt = value;
+		}
+	}
+    public PlayerModel PlayerEquipment
+	{
+		get
+		{
+			//Just use for debug and testing
+			if (_playerEquipment == null)
+			{
+				_playerEquipment = new PlayerModel(1, 10000, 100, 100);
+			}
+
+			return _playerEquipment;
+		}
+
+		set
+		{
+			_playerEquipment = value;
+		}
+	}
 
 	public static GameManager Instance
 	{

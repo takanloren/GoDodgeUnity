@@ -52,14 +52,22 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.ActiveRunAttemp.IsGameOver)
-        {
-            if (!showingGOMenuUI)
-            {
-                showingGOMenuUI = true;
-                DisplayGameOverWindow();
-            }
-        }
+		try
+		{
+			if (GameManager.Instance.ActiveRunAttemp.IsGameOver)
+			{
+				if (!showingGOMenuUI)
+				{
+					showingGOMenuUI = true;
+					DisplayGameOverWindow();
+				}
+			}
+		}
+		catch(Exception ex)
+		{
+			Debug.LogError(ex.Message);
+		}
+        
     }
 
     public void DisplayGameOverWindow()

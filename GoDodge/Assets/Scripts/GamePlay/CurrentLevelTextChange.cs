@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,6 +22,14 @@ public class CurrentLevelTextChange : MonoBehaviour
 
     public void UpdateTextToCurrentLevel()
     {
-        currentLevel.text = GameManager.Instance.ActiveRunAttemp.FinishedLevel.ToString();
+		try
+		{
+			currentLevel.text = GameManager.Instance.ActiveRunAttemp.FinishedLevel.ToString();
+		}
+		catch (Exception ex)
+		{
+			Debug.LogError(ex.Message);
+		}
+		
     }
 }
