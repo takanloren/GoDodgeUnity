@@ -39,6 +39,9 @@ public class PlayerEventTrigger : MonoBehaviour
 		{
 			case "MobEye":
             case "Goblin":
+			case "Mushroom":
+			case "Monster":
+			case "Trap":
                 //OnShield == immutable
                 if (GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect != GameManager.BuffEffects.OnShield)
                 {

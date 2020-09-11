@@ -9,6 +9,9 @@ TagManager:
   - MobEye
   - MusicGamePlay
   - MusicGameOver
+  - Trap
+  - Mushroom
+  - Monster
   layers:
   - Default
   - TransparentFX
