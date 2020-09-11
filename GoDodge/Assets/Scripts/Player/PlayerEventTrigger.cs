@@ -37,11 +37,12 @@ public class PlayerEventTrigger : MonoBehaviour
 
 		switch (col.gameObject.tag)
 		{
-			case "MobEye":
-            case "Goblin":
-			case "Mushroom":
-			case "Monster":
-			case "Trap":
+			//case "MobEye":
+   //         case "Goblin":
+			//case "Mushroom":
+			//case "Monster":
+			//case "Trap":
+			case "DEBUG":
                 //OnShield == immutable
                 if (GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect != GameManager.BuffEffects.OnShield)
                 {

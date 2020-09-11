@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Leaderboard\Leaderboard.cs" />
     <Compile Include="Assets\Scripts\MapManager\MapManager.cs" />
     <Compile Include="Assets\Scripts\Menu\MainMenuScript.cs" />
+    <Compile Include="Assets\Scripts\Mob\BigZombie\BigZombieMovement.cs" />
     <Compile Include="Assets\Scripts\Mob\Flying Eye\MobSpawnManager.cs" />
     <Compile Include="Assets\Scripts\Mob\Flying Eye\Movement.cs" />
     <Compile Include="Assets\Scripts\Mob\Goblin\GoblinMovement.cs" />

@@ -36,7 +36,7 @@ public class MushroomMovement : MonoBehaviour
 	void FixedUpdate()
 	{
 		Vector3 direction = PlayerTrans.position - transform.position;
-		Debug.Log("Chasing direction x: " + direction.x + "y: " + direction.y);
+		//Debug.Log("Chasing direction x: " + direction.x + "y: " + direction.y);
 
 		if(direction.x < 0)
 		{
