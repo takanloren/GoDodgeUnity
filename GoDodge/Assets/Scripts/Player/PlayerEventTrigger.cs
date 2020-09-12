@@ -28,10 +28,32 @@ public class PlayerEventTrigger : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("Player OnTriggerEnter2D");
+		//Debug.Log("Player OnTriggerEnter2D");
 	}
 
-	void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerStay2D(Collider2D other)
+    {
+        //Debug.Log("Player OnTriggerStay2D");
+        switch (other.gameObject.tag)
+        {
+            case "SlowGrass":
+                GameManager.Instance.ActiveRunAttemp.ActiveDebuffEffect = GameManager.DebuffEffects.Slow;
+                break;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("Player OnTriggerExit2D");
+        switch (other.gameObject.tag)
+        {
+            case "SlowGrass":
+                GameManager.Instance.ActiveRunAttemp.ActiveDebuffEffect = GameManager.DebuffEffects.None;
+                break;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
 	{
 		Debug.Log("Player OnCollisionEnter2D");
 

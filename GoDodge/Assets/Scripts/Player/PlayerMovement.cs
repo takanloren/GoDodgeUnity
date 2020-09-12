@@ -58,10 +58,17 @@ public class PlayerMovement : MonoBehaviour
 			}
 			else
 			{
-				speed = Constants.PLAYER_NORMAL_SPEED;
-			}
+                if(GameManager.Instance.ActiveRunAttemp.ActiveDebuffEffect == GameManager.DebuffEffects.Slow)
+                {
+                    speed = Constants.PLAYER_NORMAL_SPEED / 2;
+                }
+                else
+                {
+                    speed = Constants.PLAYER_NORMAL_SPEED;
+                }
+            }
 
-			float h = joystick.Horizontal * 100f;
+            float h = joystick.Horizontal * 100f;
 			float v = joystick.Vertical * 100f;
 
 			Vector3 tempVect = new Vector3(h, v, 0);

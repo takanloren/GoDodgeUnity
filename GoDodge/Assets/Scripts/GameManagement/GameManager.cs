@@ -134,4 +134,9 @@ public class GameManager
     {
         OnNormal, OnSpeedPotion, OnShield,
     }
+
+    public enum DebuffEffects
+    {
+        None, Slow,
+    }
 }

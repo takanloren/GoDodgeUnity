@@ -12,6 +12,7 @@ TagManager:
   - Trap
   - Mushroom
   - Monster
+  - SlowGrass
   layers:
   - Default
   - TransparentFX

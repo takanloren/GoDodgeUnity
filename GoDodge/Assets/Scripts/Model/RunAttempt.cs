@@ -12,7 +12,8 @@ public class RunAttempt
     private int _totalTimeRevival;
 	private bool _isGameOver;
     private GameManager.BuffEffects _activeBuffEffect = GameManager.BuffEffects.OnNormal;
-	private int _gemEarned;
+    private GameManager.DebuffEffects _activeDebuffEffect = GameManager.DebuffEffects.None;
+    private int _gemEarned;
 
     public RunAttempt(GameManager.Map map, DateTime startTime)
     {
@@ -43,6 +44,19 @@ public class RunAttempt
         set
         {
             _activeBuffEffect = value;
+        }
+    }
+
+    public GameManager.DebuffEffects ActiveDebuffEffect
+    {
+        get
+        {
+            return _activeDebuffEffect;
+        }
+
+        set
+        {
+            _activeDebuffEffect = value;
         }
     }
 
