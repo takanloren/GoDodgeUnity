@@ -28,10 +28,11 @@ public class MainMenuScript : MonoBehaviour
         }
 
 		//Should be this
-        //GameManager.Instance.PlayerEquipment = SQLiteHelper.INSTANCE.LoadPlayerEquipment();
+        GameManager.Instance.PlayerEquipment = SQLiteHelper.INSTANCE.LoadPlayerEquipment();
 
-        PlayerModel GM = new PlayerModel(Constants.CONST_PLAYER_ID, 10000, 100, 100);
-        GameManager.Instance.PlayerEquipment = GM;
+        //For development
+        //PlayerModel GM = new PlayerModel(Constants.CONST_PLAYER_ID, 10000, 100, 100);
+        //GameManager.Instance.PlayerEquipment = GM;
     }
 
     private void ClearDB()

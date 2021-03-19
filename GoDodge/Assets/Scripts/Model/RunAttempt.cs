@@ -8,7 +8,7 @@ public class RunAttempt
     private GameManager.Map _map;
     private DateTime _startTime;
     private DateTime _endTime;
-    private int _finishedLevel = 1;
+    private int _finishedLevel = 0;
     private int _totalTimeRevival;
 	private bool _isGameOver;
     private GameManager.BuffEffects _activeBuffEffect = GameManager.BuffEffects.OnNormal;
@@ -133,11 +133,13 @@ public class RunAttempt
 		}
 	}
 
+    public bool IsMapFinished { get; set; }
+
 	public int GemEarned
 	{
 		get
 		{
-			return GameManager.Instance.CalculateGemEarned(_finishedLevel);
+			return GameManager.Instance.CalculateGemEarned(_finishedLevel, Map);
 		}
 	}
 }

@@ -55,16 +55,16 @@ public class PlayerEventTrigger : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
 	{
-		Debug.Log("Player OnCollisionEnter2D");
+		//Debug.Log("Player OnCollisionEnter2D");
 
 		switch (col.gameObject.tag)
 		{
-			//case "MobEye":
-   //         case "Goblin":
-			//case "Mushroom":
-			//case "Monster":
-			//case "Trap":
-			case "DEBUG":
+			case "MobEye":
+            case "Goblin":
+			case "Mushroom":
+			case "Monster":
+			case "Trap":
+			//case "DEBUG":
                 //OnShield == immutable
                 if (GameManager.Instance.ActiveRunAttemp.ActiveBuffEffect != GameManager.BuffEffects.OnShield)
                 {
@@ -79,11 +79,35 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case "Door":
                 audioSource.PlayOneShot(enterGateAC, 1);
-                GameManager.Instance.ActiveRunAttemp.FinishedLevel++;
-				StartCoroutine(Fading());
-				SceneManager.LoadScene(GetMapScenePrefix(GameManager.Instance.ActiveRunAttemp.Map) + GameManager.Instance.ActiveRunAttemp.FinishedLevel);
-				break;
 
+                string activeSceneName = SceneManager.GetActiveScene().name;
+                string[] slitted = activeSceneName.Split('_');
+                int currentLevel = int.Parse(slitted[2]);
+                Debug.Log("Current Level: " + currentLevel);
+                GameManager.Instance.ActiveRunAttemp.FinishedLevel = currentLevel;
+
+                switch (GameManager.Instance.ActiveRunAttemp.Map)
+                {
+                    case GameManager.Map.DUNGEON:
+                        if (currentLevel < Constants.MAP_DUNGEON_MAX_LVL)
+                        {
+                            int nextLevel = ++currentLevel;
+
+                            StartCoroutine(Fading());
+                            Debug.Log("Going to level : " + nextLevel);
+                            SceneManager.LoadScene(GetMapScenePrefix(GameManager.Instance.ActiveRunAttemp.Map) + nextLevel);
+                        }
+                        else if (currentLevel == Constants.MAP_DUNGEON_MAX_LVL)
+                        {
+                            //Winner winner winner!!!
+                            GameManager.Instance.ActiveRunAttemp.IsMapFinished = true;
+                        }
+                        break;
+
+                        //TODO: More map to handle here
+                }
+                
+				break;
 		}
 		
 	}    

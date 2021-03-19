@@ -54,7 +54,9 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
     {
 		try
 		{
-			if (GameManager.Instance.ActiveRunAttemp.IsGameOver)
+            Debug.Log("Total Time Cost: " + CalculateTotalTime() + " - Start Time: "+ GameManager.Instance.ActiveRunAttemp.StartTime.ToShortTimeString());
+
+            if (GameManager.Instance.ActiveRunAttemp.IsGameOver)
 			{
 				if (!showingGOMenuUI)
 				{
@@ -317,7 +319,15 @@ public class GameOverScript : MonoBehaviour, IUnityAdsListener
 
 		if (GameManager.Instance.ActiveRunAttemp.Map.ToString().Equals(GameManager.Map.DUNGEON.ToString()))
 		{
-			SceneManager.LoadScene("Dungeon_Level_"+GameManager.Instance.ActiveRunAttemp.FinishedLevel);
+            int finishedLvl = GameManager.Instance.ActiveRunAttemp.FinishedLevel;
+
+            if(finishedLvl <= 0)
+            {
+                //Handle for revial and respawn on first lvl
+                finishedLvl = 1;
+            }
+
+            SceneManager.LoadScene("Dungeon_Level_"+ finishedLvl);
 		}
 	}
 

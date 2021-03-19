@@ -107,4 +107,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dungeon/Dungeon_Level_30.unity
     guid: 3ee58f367f007cf48b5870b128bff255
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_31.unity
+    guid: a904e64b8f5f6e8449a249d7d3afdef4
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_32.unity
+    guid: 694c7c4509b95af46b0f4ef344f380ee
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_33.unity
+    guid: 1b575ba3061fe3844bef3c73ede1d4fd
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_34.unity
+    guid: 5fb96d729fbdf644d8cf482b825eee07
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_35.unity
+    guid: fbe9fd1a2c5c89840ba9f4492d539ccb
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_36.unity
+    guid: ac428eca880639d42bb8a6fbb8503e95
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_37.unity
+    guid: 3c0f871ae509ee944908bd9765a5dcf2
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_38.unity
+    guid: da5d59e43b19d624ca79b4c471dad546
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_39.unity
+    guid: e3548366572874c4aadcd3e378a7c88f
+  - enabled: 1
+    path: Assets/Scenes/Dungeon/Dungeon_Level_40.unity
+    guid: 5c5ca65f3d7fc6f43898383564715fcf
   m_configObjects: {}

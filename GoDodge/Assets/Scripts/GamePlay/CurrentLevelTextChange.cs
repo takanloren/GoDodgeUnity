@@ -24,7 +24,7 @@ public class CurrentLevelTextChange : MonoBehaviour
     {
 		try
 		{
-			currentLevel.text = GameManager.Instance.ActiveRunAttemp.FinishedLevel.ToString();
+			currentLevel.text = (GameManager.Instance.ActiveRunAttemp.FinishedLevel + 1).ToString();
 		}
 		catch (Exception ex)
 		{

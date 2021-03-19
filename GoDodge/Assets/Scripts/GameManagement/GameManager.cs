@@ -15,11 +15,11 @@ public class GameManager
 	{
 		get
 		{
-			//Just use for debug and testing
-			if(_activeRunAttempt == null)
-			{
-				_activeRunAttempt = new RunAttempt(Map.DUNGEON, DateTime.Now);
-			}
+			////Just use for debug and testing
+			//if(_activeRunAttempt == null)
+			//{
+			//	_activeRunAttempt = new RunAttempt(Map.DUNGEON, DateTime.Now);
+			//}
 
 			return _activeRunAttempt;
 		}
@@ -33,11 +33,11 @@ public class GameManager
 	{
 		get
 		{
-			//Just use for debug and testing
-			if (_playerEquipment == null)
-			{
-				_playerEquipment = new PlayerModel(1, 10000, 100, 100);
-			}
+			////Just use for debug and testing
+			//if (_playerEquipment == null)
+			//{
+			//	_playerEquipment = new PlayerModel(1, 10000, 100, 100);
+			//}
 
 			return _playerEquipment;
 		}
@@ -98,10 +98,10 @@ public class GameManager
 		}
     }
 
-	public int CalculateGemEarned(int finishedLevel)
+	public int CalculateGemEarned(int finishedLevel, Map runningMap)
 	{
 		int gemEarned = 0;
-		if(finishedLevel == 1)
+		if(finishedLevel <= 1)
 		{
 			return 0;
 		}
@@ -111,8 +111,20 @@ public class GameManager
 		//Bonus gem on each 10lv finished - each 10lv bonus 20 gem
 		int bonusMultiplier = finishedLevel / 10;
 		int bonusGems = bonusMultiplier * 20;
+        int mapFinishBonus = 0;
 
-		return gemEarned + bonusGems;
+        switch(runningMap)
+        {
+            case Map.DUNGEON:
+                if(finishedLevel == Constants.MAP_DUNGEON_MAX_LVL)
+                {
+                    //Finish the map will get a super bonus 500 gems
+                    mapFinishBonus = 500;
+                }
+                break;
+        }
+
+		return gemEarned + bonusGems + mapFinishBonus;
 	}
 
     public async void SetGameOverWithDelayTime(bool state, int time)

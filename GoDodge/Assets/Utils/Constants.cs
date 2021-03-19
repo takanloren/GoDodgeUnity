@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constants
+public static class Constants
 {
 	#region Map Level Prefix
 	public static string DUNGEON_LEVEL_PREFIX = "Dungeon_Level_";
@@ -32,10 +32,16 @@ public class Constants
 	#region MAP ID
 	public static int MAP_DUNGEON_ID = 1;
 
-	#endregion
+    #endregion
 
-	#region ADS
-	public static string GOOGLE_PLAY_GAME_ID = "3808815";
+    #region MAP MAX LEVEL
+
+    public const int MAP_DUNGEON_MAX_LVL = 40;
+
+    #endregion
+
+    #region ADS
+    public static string GOOGLE_PLAY_GAME_ID = "3808815";
 	public static string Shield_Reward_PlacementID = "shieldReward";
 	public static string SpeedPotion_Reward_PlacementID = "speedPotionReward";
 	public static string Gem_Reward_PlacementID = "gemReward";

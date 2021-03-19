@@ -54,7 +54,7 @@ public class FirebaseLeaderboardHandler
         }
         else if (timeSpan.TotalHours < 1.0)
         {
-            totalTimeText = String.Format("00:00:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+            totalTimeText = String.Format("00:{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         }
         else // more than 1 hour
         {

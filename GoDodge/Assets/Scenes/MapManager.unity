@@ -2106,7 +2106,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Highest Lvl:'
+  m_text: 'Record:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76ed0a3fe80791b478203eddf683b53e, type: 2}
   m_sharedMaterial: {fileID: -5299047168573739705, guid: 76ed0a3fe80791b478203eddf683b53e,

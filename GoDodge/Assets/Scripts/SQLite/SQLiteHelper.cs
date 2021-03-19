@@ -187,7 +187,7 @@ public class SQLiteHelper
                         + Constants.SQLITE_PLAYER_SHIELDS + ", "
                         + Constants.SQLITE_PLAYER_SPEED_POTION + " ) "
 
-                        + "VALUES (1, 0, 0, 0) ";
+                        + "VALUES (1, 300, 5, 5) ";
         Debug.Log("Init player equipment: " + cmnd.CommandText);
         cmnd.ExecuteNonQuery();
     }
@@ -200,7 +200,7 @@ public class SQLiteHelper
     private void InitMapDungeon()
     {
         Debug.Log("Initializing map DUNGEON");
-        MapModel dungeon = new MapModel(Constants.MAP_DUNGEON_ID, GameManager.Map.DUNGEON.ToString(), 40, true);
+        MapModel dungeon = new MapModel(Constants.MAP_DUNGEON_ID, GameManager.Map.DUNGEON.ToString(), Constants.MAP_DUNGEON_MAX_LVL, true);
 
         if (NeedToAddMapData(GameManager.Map.DUNGEON))
         {
